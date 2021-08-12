@@ -97,7 +97,7 @@
                         return;
                     }
                     axios.get("http://18.218.72.247/weathe").then(function(response) {
-                        console.log(response);}).catch( function(err) {
+                        console.log(response.name);}).catch( function(err) {
                         alert('未找到，请输入正确中文名称')
                     });
                 }
