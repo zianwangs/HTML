@@ -181,14 +181,13 @@
                         that.player = response.data.player;
                         that.monsters = response.data.monsters;
                         console.log(response);
-                        for (a in that.monsters) {
-                            console.log(a.type);
-                            if (a.type == "0") {
-                                a.type = "普通";
-                            } else if (a.type == "1") {
-                                a.type = "精英";
+                        for (int i = 0; i < 3; ++i) {
+                            if (that.monsters[i].type == "0") {
+                                that.monsters[i].type = "普通";
+                            } else if (that.monsters[i].type == "1") {
+                                that.monsters[i].type = "精英";
                             } else {
-                                a.type = "BOSS";
+                                that.monsters[i].type = "BOSS";
                             }
                         }
                         that.btn_next = false;
