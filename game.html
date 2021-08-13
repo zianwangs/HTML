@@ -177,10 +177,11 @@
                             that.monsters = [];
                             return;
                         }
-                        console.log(response);
+                        
                         that.player = response.data.player;
                         that.monsters = response.data.monsters;
-                        for (var a in monsters) {
+                        console.log(response);
+                        for (var a in that.monsters) {
                             if (a.type == "0") {
                                 a.type = "普通";
                             } else if (a.type == "1") {
