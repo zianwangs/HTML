@@ -181,7 +181,7 @@
                         that.player = response.data.player;
                         that.monsters = response.data.monsters;
                         console.log(response);
-                        for (int i = 0; i < 3; ++i) {
+                        for (var i = 0; i < 3; ++i) {
                             if (that.monsters[i].type == "0") {
                                 that.monsters[i].type = "普通";
                             } else if (that.monsters[i].type == "1") {
