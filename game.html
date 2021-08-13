@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>游戏中...</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #app {
+            width: 100%;
+            height: 650px;
+        }
+
+        h2 {
+            text-align: center;
+            font-size: 30px;
+            margin-top: 15px;
+            margin-bottom: 20px;
+        }
+        body>div {
+            text-align: center;
+        }
+        input {
+            width: 300px;
+            height: 20px;
+            margin-right: 10px;
+            margin-bottom: 10px;;
+            border: 1px solid skyblue;
+        }
+
+        img {
+            
+            width: 250px;
+            height: 200px;
+            display: block;
+            text-align: center;
+            background-repeat: no-repeat;
+            margin: 20px auto;
+            margin-bottom: 10px;
+        }
+        ul {
+            margin-right: 10px;
+            width: 350px;
+            float: left;
+            height: 100%;
+        }
+        li {
+            padding-top: 20px;
+            text-align: center;
+            font-size: 25px;
+            font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+            list-style: none;
+        }
+
+        .result {
+            margin: 20px auto;
+            width: 800px;
+            height: 250px;
+    
+        }
+
+        .attr {
+            float: left;
+            width: 25%;
+            height: 100%;
+            background-color: #aaa;
+        }
+
+        .monster {
+            float: left;
+            width: 75%;
+            height: 100%;
+            background-color: #fbf;
+        }
+        button {
+            margin-top: 30px;
+            width: 60px;
+            height: 40px;
+        }
+
+        .monster>button {
+            float:bottom;
+            display: block;
+            height: 60px;
+            width: 990px;
+            margin: 0px auto;
+        }
+
+        .monster > div {
+            display: inline-block;
+            margin: 20px;
+            width: 300px;
+            height: 80%;
+            background-color:green;
+        }
+        strong {
+            font-size: 20px;
+        }
+        .monster img {
+            margin-left: 34px;
+            width: 80%;
+            height: 30%;
+        }
+    </style>
+</head>
+    
+<body>
+    <div id="app">
+        <div class="attr">
+            <img src="https://img0.baidu.com/it/u=2355626443,1841046467&fm=26&fmt=auto&gp=0.jpg">
+            <div class="result">
+                <ul>
+                    <li style="color:black"><b>用户名: &nbsp;{{player.id}}</b></li>
+                    <li style="color:red"><b>生命值:&nbsp;&nbsp;{{player.hp}}</b></li>
+                    <li style="color:white">攻击力: &nbsp;{{player.atk}}</li>
+                    <li style="color:#05e">防御力: &nbsp;{{player.def}}</li>
+                    <li style="color:gold">金钱: &nbsp;{{player.gold}}</li>
+                    <li style="color:palegreen">当前层数: &nbsp;{{player.floor}}</li>
+                </ul>
+            </div>
+        </div>
+        <div class="monster">
+            <div v-for="item in monsters">
+                <img>
+                <li style="color:black"><b>{{item.type}}</b></li>
+                <li style="color:red"><b>生命值:&nbsp;&nbsp;{{item.hp}}</b></li>
+                <li style="color:white">攻击力: &nbsp;{{item.atk}}</li>
+                <li style="color:#05e">防御力: &nbsp;{{item.def}}</li>
+                <button disabled="btn_battle">打它</button>
+            </div>
+        <button @click="next" disabled="btn_next"><strong>下一层</strong></button>
+        </div>
+        
+        
+        
+    </div>
+    
+    <script>
+        var app = new Vue({
+            el:"#app",
+            data:{
+                player:{id:"马保国",hp:1000, atk:10, def:10, gold:0, floor:1},
+                btn_next: false,
+                btn_battle: true,
+                monsters: [],
+            },
+            methods: {
+                next: function() {
+                    that = this;
+                    if (that.searchKey == '') {
+                        that.weather_list = [];
+                        return;
+                    }
+                    axios.get("http://wthrcdn.etouch.cn/weather_mini?city="+that.searchKey).then(function(response) {
+                        that.weather_list = response.data.data.forecast;
+                    }).catch( function(err) {
+                        alert('未找到，请输入正确中文名称')
+                    });
+                },
+                battle: function() {
+                    that = this;
+                    if (that.searchKey == '') {
+                        that.weather_list = [];
+                        return;
+                    }
+                    axios.get("http://wthrcdn.etouch.cn/weather_mini?city="+that.searchKey).then(function(response) {
+                        that.weather_list = response.data.data.forecast;
+                    }).catch( function(err) {
+                        alert('未找到，请输入正确中文名称')
+                    });
+                }
+
+            }
+
+        });
+    </script>
+    
+</body>
+</html>
