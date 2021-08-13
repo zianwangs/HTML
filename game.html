@@ -158,11 +158,10 @@
                 next: function() {
                     that = this;
                     axios.get("http://18.222.199.204/next?id="+that.player.id).then(function(response) {
-                        player = response.data.player;
-                        monsters = response.data.monsters;
-                        btn_battle = false;
-                        btn_next = true;
-                        console.log(monsters);
+                        that.player = response.data.player;
+                        that.monsters = response.data.monsters;
+                        that.btn_battle = false;
+                        that.btn_next = true;
                     }).catch( function(err) {
                         alert('Error');
                     });
@@ -170,10 +169,10 @@
                 battle: function(idx) {
                     that = this;
                     axios.get("http://18.222.199.204/battle?id="+that.player.id + "&idx=" + idx).then(function(response) {
-                        player = response.data.player;
-                        monsters = response.data.monsters;
-                        btn_next = false;
-                        btn_battle = true;
+                        that.player = response.data.player;
+                        that.monsters = response.data.monsters;
+                        that.btn_next = false;
+                        that.btn_battle = true;
                     }).catch( function(err) {
                         alert('未找到，请输入正确中文名称')
                     });
