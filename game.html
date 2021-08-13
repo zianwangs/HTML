@@ -123,7 +123,7 @@
                     <li style="color:black"><b>用户名: &nbsp;{{player.id}}</b></li>
                     <li style="color:red"><b>生命值:&nbsp;&nbsp;{{player.hp}}</b></li>
                     <li style="color:white">攻击力: &nbsp;{{player.atk}}</li>
-                    <li style="color:#05e">防御力: &nbsp;{{player.def}}</li>
+                    <li style="color:#08e">防御力: &nbsp;{{player.def}}</li>
                     <li style="color:gold">金钱: &nbsp;{{player.gold}}</li>
                     <li style="color:palegreen">当前层数: &nbsp;{{player.floor}}</li>
                 </ul>
@@ -171,6 +171,15 @@
                     axios.get("http://18.222.199.204/battle?id="+that.player.id + "&idx=" + idx).then(function(response) {
                         that.player = response.data.player;
                         that.monsters = response.data.monsters;
+                        for (var a in monsters) {
+                            if (a.type == 0) {
+                                a.type = "普通";
+                            } else if (a.type == 1) {
+                                a.type = "精英";
+                            } else {
+                                a.type = "BOSS";
+                            }
+                        }
                         that.btn_next = false;
                         that.btn_battle = true;
                     }).catch( function(err) {
