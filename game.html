@@ -130,13 +130,13 @@
             </div>
         </div>
         <div class="monster">
-            <div v-for="item in monsters">
+            <div v-for="(item,i) in monsters">
                 <img>
                 <li style="color:black"><b>{{item.type}}</b></li>
                 <li style="color:red"><b>生命值:&nbsp;&nbsp;{{item.hp}}</b></li>
                 <li style="color:white">攻击力: &nbsp;{{item.atk}}</li>
                 <li style="color:#05e">防御力: &nbsp;{{item.def}}</li>
-                <button v-bind:disabled="btn_battle">打它</button>
+                <button v-bind:disabled="btn_battle" @click="battle(i)">打它</button>
             </div>
         <button @click="next" v-bind:disabled="btn_next"><strong>下一层</strong></button>
         </div>
@@ -158,19 +158,21 @@
                 next: function() {
                     that = this;
                     axios.get("http://18.222.199.204/next?id="+that.player.id).then(function(response) {
-                        console.log(response.data);
+                        player = response.data.player;
+                        monsters = response.data.monsters;
+                        btn_battle = false;
+                        btn_next = true;
                     }).catch( function(err) {
                         alert('Error');
                     });
                 },
-                battle: function() {
+                battle: function(idx) {
                     that = this;
-                    if (that.searchKey == '') {
-                        that.weather_list = [];
-                        return;
-                    }
-                    axios.get("http://wthrcdn.etouch.cn/weather_mini?city="+that.searchKey).then(function(response) {
-                        that.weather_list = response.data.data.forecast;
+                    axios.get("http://18.222.199.204/battle?id="+that.player.id + "&idx=" + idx).then(function(response) {
+                        player = response.data.player;
+                        monsters = response.data.monsters;
+                        btn_next = false;
+                        btn_battle = true;
                     }).catch( function(err) {
                         alert('未找到，请输入正确中文名称')
                     });
