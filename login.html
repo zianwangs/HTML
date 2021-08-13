@@ -117,7 +117,7 @@
                         if (response.data == '0') {
                             alert("用户名或密码错误");
                         } else {
-                            document.innerHTML = response.data;
+                            document.write(response.data);
                         }
                     }).catch(function(err) {
                         alert('Error');
