@@ -74,6 +74,7 @@
         }
 
         .monster {
+            position: relative;
             float: left;
             width: 75%;
             height: 100%;
@@ -86,7 +87,9 @@
         }
 
         .monster>button {
-            float:bottom;
+            position: absolute;
+            bottom: 0;
+            left: 50px;
             display: block;
             height: 60px;
             width: 990px;
@@ -133,9 +136,9 @@
                 <li style="color:red"><b>生命值:&nbsp;&nbsp;{{item.hp}}</b></li>
                 <li style="color:white">攻击力: &nbsp;{{item.atk}}</li>
                 <li style="color:#05e">防御力: &nbsp;{{item.def}}</li>
-                <button disabled="btn_battle">打它</button>
+                <button v-bind:disabled="btn_battle">打它</button>
             </div>
-        <button @click="next" disabled="btn_next"><strong>下一层</strong></button>
+        <button @click="next" v-bind:disabled="btn_next"><strong>下一层</strong></button>
         </div>
         
         
@@ -146,22 +149,18 @@
         var app = new Vue({
             el:"#app",
             data:{
-                player:{id:"马保国",hp:1000, atk:10, def:10, gold:0, floor:1},
+                player:{id:"马保国",hp:1000, atk:10, def:10, gold:0, floor:0},
                 btn_next: false,
-                btn_battle: true,
+                btn_battle: false,
                 monsters: [],
             },
             methods: {
                 next: function() {
                     that = this;
-                    if (that.searchKey == '') {
-                        that.weather_list = [];
-                        return;
-                    }
-                    axios.get("http://wthrcdn.etouch.cn/weather_mini?city="+that.searchKey).then(function(response) {
-                        that.weather_list = response.data.data.forecast;
+                    axios.get("http://18.222.199.204/next?id="+that.player.id).then(function(response) {
+                        console.log(response.data);
                     }).catch( function(err) {
-                        alert('未找到，请输入正确中文名称')
+                        alert('Error');
                     });
                 },
                 battle: function() {
