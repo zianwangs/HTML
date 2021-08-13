@@ -163,9 +163,9 @@
                         that.btn_battle = false;
                         that.btn_next = true;
                         for (var i = 0; i < 3; ++i) {
-                            if (that.monsters[i].type == "0") {
+                            if (that.monsters[i].type == "1") {
                                 that.monsters[i].type = "普通";
-                            } else if (that.monsters[i].type == "1") {
+                            } else if (that.monsters[i].type == "2") {
                                 that.monsters[i].type = "精英";
                             } else {
                                 that.monsters[i].type = "BOSS";
@@ -190,9 +190,9 @@
                         that.player = response.data.player;
                         that.monsters = response.data.monsters;
                         for (var i = 0; i < 3; ++i) {
-                            if (that.monsters[i].type == "0") {
+                            if (that.monsters[i].type == "1") {
                                 that.monsters[i].type = "普通";
-                            } else if (that.monsters[i].type == "1") {
+                            } else if (that.monsters[i].type == "2") {
                                 that.monsters[i].type = "精英";
                             } else {
                                 that.monsters[i].type = "BOSS";
