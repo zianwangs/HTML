@@ -42,8 +42,7 @@
             display: block;
             text-align: center;
             background-repeat: no-repeat;
-            margin: 20px auto;
-            margin-bottom: 10px;
+            margin: 10px auto;
         }
         ul {
             margin-right: 10px;
@@ -51,6 +50,10 @@
             float: left;
             height: 100%;
         }
+        .first {
+            padding-top: 0;
+        }
+        
         li {
             padding-top: 20px;
             text-align: center;
@@ -120,10 +123,11 @@
             <img src="https://img0.baidu.com/it/u=2355626443,1841046467&fm=26&fmt=auto&gp=0.jpg">
             <div class="result">
                 <ul>
-                    <li style="color:black"><b>用户名: &nbsp;{{player.id}}</b></li>
+                    <li style="color:black" class="first"><b>用户名: &nbsp;{{player.id}}</b></li>
                     <li style="color:red"><b>生命值:&nbsp;&nbsp;{{player.hp}}</b></li>
                     <li style="color:white">攻击力: &nbsp;{{player.atk}}</li>
                     <li style="color:#08e">防御力: &nbsp;{{player.def}}</li>
+                    <li style="color:#ee00ba">暴击率: &nbsp;{{player.crit}}%</li>
                     <li style="color:gold">金钱: &nbsp;{{player.gold}}</li>
                     <li style="color:palegreen">当前层数: &nbsp;{{player.floor}}</li>
                 </ul>
@@ -140,6 +144,7 @@
             </div>
         <button @click="next" v-bind:disabled="btn_next"><strong>下一层</strong></button>
         </div>
+
         
         
         
@@ -149,7 +154,7 @@
         var app = new Vue({
             el:"#app",
             data:{
-                player:{id:localStorage.getItem("id"),hp:1000, atk:10, def:10, gold:0, floor:0},
+                player:{id:localStorage.getItem("id"),hp:1000, atk:10, def:10, crit:0, gold:0, floor:0},
                 btn_next: false,
                 btn_battle: false,
                 monsters: [],
@@ -180,7 +185,7 @@
                     axios.get("http://18.222.199.204/battle?id="+that.player.id + "&idx=" + idx).then(function(response) {
                         if (response.data == "0") {
                             alert("你🈚️了");
-                            that.player = {id:localStorage.getItem("id"),hp:1000, atk:10, def:10, gold:0, floor:0};
+                            that.player = {id:localStorage.getItem("id"),hp:1000, atk:10, def:10, crit:10, gold:0, floor:0};
                             that.btn_next = false;
                             that.btn_battle = false;
                             that.monsters = [];
