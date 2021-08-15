@@ -97,7 +97,7 @@
                         alert('注册信息不能为空');
                         return;
                     }
-                    axios.get("http://18.222.199.204/register?key="+that.registerKey+"&val="+that.registerVal).then(function(response) {
+                    axios.get("http://3.139.102.174/register?key="+that.registerKey+"&val="+that.registerVal).then(function(response) {
                         if (response.data == '0') {
                             alert("用户已存在");
                         } else {
@@ -113,7 +113,7 @@
                         alert('登录信息不能为空')
                         return;
                     }
-                    axios.get("http://18.222.199.204/login?key="+that.loginKey+"&val="+that.loginVal).then(function(response) {
+                    axios.get("http://3.139.102.174/login?key="+that.loginKey+"&val="+that.loginVal).then(function(response) {
                         if (response.data == '0') {
                             alert("用户名或密码错误");
                         } else {
