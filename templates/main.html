@@ -23,7 +23,7 @@
     </div>
     <div id="login_body_main">
       <div id="side_bar">
-      <li id="side_bar_name">Hi, {{username}}!</li>
+      <li id="side_bar_name" @load="aux_get_name">Hi, {{username}}!</li>
       <li id="side_bar_start">Start</li>
       <li id="side_bar_orders">Ride Orders</li>
       <li id="side_bar_drive_orders">Drive Orders</li>
@@ -80,6 +80,21 @@
                     });
                 
             },
+
+        methods: {
+          aux_get_name: function() {
+                    that = this;
+                    axios.get("/aux_get_name").then(function(response) {
+                      
+                      that.username = response.data[0].fields.username
+                    console.log(that.username)
+
+                    }).catch(function(err) {
+                        alert('Error');
+                    });
+                
+            },
+        }
             
 
         });
