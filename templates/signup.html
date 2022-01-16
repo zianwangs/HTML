@@ -27,17 +27,58 @@
             WeRide
         </div>
         <div id="signup_box">
-            <li>Username: &nbsp;<input /></li>
-            <li>Password: &nbsp;<input /></li>
-            <li>&nbsp;&nbsp;&nbsp;E-mail:   &nbsp;<input /> </li>
+            <li>Username: &nbsp;<input type="text" v-model="username"/></li>
+            <li>Password: &nbsp;<input type="text" v-model="password"/></li>
+            <li>&nbsp;&nbsp;&nbsp;E-mail:   &nbsp;<input type="text" v-model="email"/> </li>
         </div>
-        <div id="signup_logo">
+        <div id="signup_logo" @click='signup'>
             Sign Up
         </div>
 
     </div>
     
     <script>
+        var app = new Vue({
+            el:"#signup_body_main",
+            data:{
+                username:'',
+                password:'',
+                email:'',
+            },
+            methods: {
+                signup: function() {
+                    that = this;
+                    if (that.username == '') {
+                        alert('Username cannot be empty!')
+                        return
+                    }
+                    if (that.password == '') {
+                        alert("Password cannot be empty!")
+                        return
+                    }
+                    if (that.email == '') {
+                        alert("E-mail cannot be empty!")
+                        return
+                    }
+                    if (that.email.match("[a-zA-Z0-9]+@[a-a-zA-Z0-9]+(.[a-a-zA-Z0-9]+)+") == null) {
+                        alert("Invalid Email address!")
+                        return
+                    }
+                    axios.get("signup/"+that.username+"/"+that.password+"/"+that.email).then(function(response) {
+                        if (response.data.status_code == 1) {
+                            alert("Username already exists!")
+                        } else {
+                            alert("Signup done, please log in now!")
+                            location.href = 'login.html'
+                        }
+                    }).catch(function(err) {
+                        alert('Error');
+                    });
+                },
+                
+            }
+
+        });
         
     </script>
 
