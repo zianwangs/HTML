@@ -28,17 +28,49 @@
                 WeRide
             </div>
             <div id="signup_box">
-                <li>Username: &nbsp;<input /></li>
-                <li>Password: &nbsp;<input /></li>
+                <li>Username: &nbsp;<input type="text" v-model="username"/></li>
+                <li>Password: &nbsp;<input type="text" v-model="password"/></li>
             </div>
-            <div id="login_logo" onclick="location.href='main.html'">
+            <div id="login_logo" @onclick="login">
                 Log In
             </div>
         
     </div>
     
     <script>
-        
+        var app = new Vue({
+            el:"#signup_body_main",
+            data:{
+                username:'',
+                password:'',
+            },
+            methods: {
+                login: function() {
+                    that = this;
+                    if (that.username == '') {
+                        alert('Username cannot be empty!')
+                        return
+                    }
+                    if (that.password == '') {
+                        alert("Password cannot be empty!")
+                        return
+                    }
+                    axios.get("login/"+that.username+"/"+that.password).then(function(response) {
+                        if (response.data.status_code == 1) {
+                            alert("User does not exist!")
+                        } else if (response.data.status_code == 2) {
+                            alert("Password is incorrect!")
+                        } else {
+                            location.href = "main.html"
+                        }
+                    }).catch(function(err) {
+                        alert('Error');
+                    });
+                },
+                
+            }
+
+        });
     </script>
 
 </body>
