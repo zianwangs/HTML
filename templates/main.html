@@ -71,7 +71,7 @@
             mounted: function() {
                     that = this;
                     axios.get("/aux_get_name").then(function(response) {
-                      username = response.data.fields.username
+                      that.username = response.data.fields.username
                     
 
                     }).catch(function(err) {
