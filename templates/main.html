@@ -23,7 +23,7 @@
     </div>
     <div id="login_body_main">
       <div id="side_bar">
-      <li id="side_bar_name" @load="aux_get_name">{% verbatim %}{{ username }}{% endverbatim%}</li>
+      <li id="side_bar_name">Hi, {% verbatim %}{{ username }}{% endverbatim%}!</li>
       <li id="side_bar_start">Start</li>
       <li id="side_bar_orders">Ride Orders</li>
       <li id="side_bar_drive_orders">Drive Orders</li>
@@ -61,38 +61,30 @@
         iframe.src = "/drive_orders.html"
       }
       var app = new Vue({
-            el:"#side_bar_name",
+            el:"#side_bar",
             data:{
-                username:'XXX',
+                username:'',
                 password:'',
                 email:'',
                 isdriver:''
             },
             mounted: function() {
                     that = this;
-                    axios.get("/aux_get_name").then(function(response) {
-                      
-                      that.username = response.data[0].fields.username
-                    console.log(that.username)
-
+                    axios.get("/aux_get_name").then(function(response) {  
+                    that.username = response.data[0].fields.username
                     }).catch(function(err) {
                         alert('Error');
                     });
-                
             },
 
         methods: {
           aux_get_name: function() {
                     that = this;
-                    axios.get("/aux_get_name").then(function(response) {
-                      
-                      that.username = response.data[0].fields.username
-                    console.log(that.username)
-
+                    axios.get("/aux_get_name").then(function(response) { 
+                    that.username = response.data[0].fields.username
                     }).catch(function(err) {
                         alert('Error');
                     });
-                
             },
         }
             
