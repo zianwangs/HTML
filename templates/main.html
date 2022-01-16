@@ -38,29 +38,7 @@
       
     </div>
     
-    <script>
-      var start = document.getElementById("side_bar_start")
-      var orders = document.getElementById("side_bar_orders")
-      var drive_orders = document.getElementById("side_bar_drive_orders")
-      var iframe = document.getElementById("main_iframe")
-      var driver = document.getElementById("side_bar_driver_info")
-      var account = document.getElementById("side_bar_account")
-      start.onclick = function() {
-        iframe.src = "/start.html";
-      }
-      orders.onclick = function() {
-        iframe.src = "/orders.html"
-      }
-      driver.onclick = function() {
-        iframe.src = "/driver.html"
-      }
-      account.onclick = function() {
-        iframe.src = "/account.html"
-      }
-      drive_orders.onclick = function() {
-        iframe.src = "/drive_orders.html"
-      }
-      </script>
+    
       <script>
       var app = new Vue({
             el:"#login_body_main",
