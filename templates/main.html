@@ -47,7 +47,7 @@
                 password:'',
                 email:'',
                 isdriver:'',
-                iframe: document.getElementById("main_iframe")
+                
             },
             mounted: function() {
                     that = this;
@@ -62,8 +62,9 @@
                 this.iframe.src = "/start.html"
               },
               orders: function() {
+                var iframe = document.getElementById("main_iframe")
                 console.log("orders")
-                this.iframe.src = "/orders.html"
+                iframe.src = "/orders.html"
               }
             }
 
