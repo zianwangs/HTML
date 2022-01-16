@@ -26,9 +26,9 @@
       <li id="side_bar_name">Hi, {% verbatim %}{{ username }}{% endverbatim%}!</li>
       <li id="side_bar_start" @click="start">Start</li>
       <li id="side_bar_orders" @click="orders">Ride Orders</li>
-      <li id="side_bar_drive_orders">Drive Orders</li>
-      <li id="side_bar_driver_info">Driver Info</li>
-      <li id="side_bar_account">Account</li>
+      <li id="side_bar_drive_orders" @click="drive_orders">Drive Orders</li>
+      <li id="side_bar_driver_info" @click="driver">Driver Info</li>
+      <li id="side_bar_account" @click="account">Account</li>
       </div>
       <div id="main_content">
         <iframe id="main_iframe" src="/start.html">
