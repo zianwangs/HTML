@@ -72,7 +72,7 @@
                     that = this;
                     axios.get("/aux_get_name").then(function(response) {
                       console.log(response.data[0])
-                      that.username = response.data.fields.username
+                      that.username = response.data[0].fields.username
                     
 
                     }).catch(function(err) {
