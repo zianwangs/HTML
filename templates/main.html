@@ -23,7 +23,7 @@
     </div>
     <div id="login_body_main">
       <div id="side_bar">
-      <li id="side_bar_name" @load="aux_get_name">{{ username }}</li>
+      <li id="side_bar_name" @load="aux_get_name">{% verbatim %}{{ username }}{% endverbatim%}</li>
       <li id="side_bar_start">Start</li>
       <li id="side_bar_orders">Ride Orders</li>
       <li id="side_bar_drive_orders">Drive Orders</li>
