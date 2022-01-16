@@ -11,7 +11,7 @@
 
 </head>
     
-<body>
+<body id="app">
     <div id="index_body_banner">
         <div id="index_body_banner_logo" onclick="location.href='index.html'">
             WeRide
@@ -24,7 +24,7 @@
     <div id="login_body_main">
       <div id="side_bar">
       <li id="side_bar_name">Hi, {% verbatim %}{{ username }}{% endverbatim%}!</li>
-      <li id="side_bar_start">Start</li>
+      <li id="side_bar_start" @click="start">Start</li>
       <li id="side_bar_orders">Ride Orders</li>
       <li id="side_bar_drive_orders">Drive Orders</li>
       <li id="side_bar_driver_info">Driver Info</li>
@@ -63,7 +63,7 @@
       </script>
       <script>
       var app = new Vue({
-            el:"#side_bar",
+            el:"#app",
             data:{
                 username:'',
                 password:'',
@@ -78,6 +78,12 @@
                         alert('Error');
                     });
             },
+            methods: {
+              start: function() {
+                var iframe = document.getElementById("main_iframe")
+                iframe.src = "/start.html"
+              }
+            }
 
         methods: {
           aux_get_name: function() {
