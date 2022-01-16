@@ -59,12 +59,19 @@
             },
             methods: {
               start: function() {
-                this.iframe.src = "/start.html"
+                document.getElementById("main_iframe").src = "/start.html"
               },
               orders: function() {
-                var iframe = document.getElementById("main_iframe")
-                console.log("orders")
-                iframe.src = "/orders.html"
+                document.getElementById("main_iframe").src = "/orders.html"
+              },
+              drive_orders: function() {
+                document.getElementById("main_iframe").src = "/drive_orders.html"
+              },
+              driver: function() {
+                document.getElementById("main_iframe").src = "/driver.html"
+              },
+              account: function() {
+                document.getElementById("main_iframe").src = "/account.html"
               }
             }
 
