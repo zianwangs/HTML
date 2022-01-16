@@ -23,7 +23,7 @@
     </div>
     <div id="login_body_main">
       <div id="side_bar">
-      <li id="side_bar_name">Hi, XXX!</li>
+      <li id="side_bar_name" @load="aux_get_name">Hi, {{username}}!</li>
       <li id="side_bar_start">Start</li>
       <li id="side_bar_orders">Ride Orders</li>
       <li id="side_bar_drive_orders">Drive Orders</li>
@@ -60,7 +60,45 @@
       drive_orders.onclick = function() {
         iframe.src = "/drive_orders.html"
       }
+      var app = new Vue({
+            el:"#side_bar",
+            data:{
+                username:'',
+                password:'',
+                email:'',
+                isdriver:''
+            },
+            methods: {
+                aux_get_name: function() {
+                    that = this;
+                    if (that.registerKey == '' || that.registerKey.match("[a-zA-Z0-9]+@[a-zA-Z0-9]+") == null) {
+                        alert('bogie')
+                        return
+                    }
+                    axios.get("http://3.139.102.174/register?key="+that.registerKey+"&val="+that.registerVal).then(function(response) {
+                        if (response.data == '0') {
+                            alert("用户已存在");
+                        } else {
+                            alert("注册成功");
+                        }
+                    }).catch(function(err) {
+                        alert('Error');
+                    });
+                },
+                login: function() {
+                    that = this;
+                    axios.get("/aux_get_name").then(function(response) {
+                      username = response.data.fields.username
+                    
 
+                    }).catch(function(err) {
+                        alert('Error');
+                    });
+                }
+            },
+            
+
+        });
 
         
     </script>
