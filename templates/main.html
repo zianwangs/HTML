@@ -25,7 +25,7 @@
       <div id="side_bar">
       <li id="side_bar_name">Hi, {% verbatim %}{{ username }}{% endverbatim%}!</li>
       <li id="side_bar_start" @click="start">Start</li>
-      <li id="side_bar_orders">Ride Orders</li>
+      <li id="side_bar_orders" @click="orders">Ride Orders</li>
       <li id="side_bar_drive_orders">Drive Orders</li>
       <li id="side_bar_driver_info">Driver Info</li>
       <li id="side_bar_account">Account</li>
@@ -83,6 +83,9 @@
               start: function() {
                 iframe.src = "/start.html"
               },
+              orders: function() {
+                iframe.src = "/orders.html"
+              }
             }
 
         
