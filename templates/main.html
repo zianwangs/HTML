@@ -68,7 +68,8 @@
                 username:'',
                 password:'',
                 email:'',
-                isdriver:''
+                isdriver:'',
+                iframe: document.getElementById("main_iframe")
             },
             mounted: function() {
                     that = this;
@@ -80,21 +81,11 @@
             },
             methods: {
               start: function() {
-                var iframe = document.getElementById("main_iframe")
                 iframe.src = "/start.html"
-              }
+              },
             }
 
-        methods: {
-          aux_get_name: function() {
-                    that = this;
-                    axios.get("/aux_get_name").then(function(response) { 
-                    that.username = response.data[0].fields.username
-                    }).catch(function(err) {
-                        alert('Error');
-                    });
-            },
-        }
+        
             
 
         });
