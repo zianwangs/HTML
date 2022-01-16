@@ -4,33 +4,27 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome to WeRide!</title>
     <link rel="stylesheet" href="static/style.css">
-    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script> -->
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-
+    <title></title>
 </head>
-    
 <body>
-    <img id="login_img" src="https://img0.baidu.com/it/u=1819178087,523352734&fm=26&fmt=auto&gp=0.jpg">
-    <h2>WeRide Login</h2>
-    <div id="app">
-        <div class="register">
-            <h3>新用户注册</h3>
-            <input type="text" v-model="registerKey" placeholder="请输入用户名" maxlength="8">
-            <input type="text" v-model="registerVal" @keyup.enter="register" placeholder="请输入密码" maxlength="6">
-            <button @click="register">注册</button>
+    <div id="secret_signup">
+        <div id="app">
+            <div class="register">
+                <h2>Ride Information</h2>
+                Destination: &nbsp;<input type="text" v-model="registerKey" required maxlength="20">
+                <input type="text" v-model="registerVal" @keyup.enter="register" placeholder="请输入密码" required maxlength="20">
+                <button @click="register">Request a Ride Now</button>
+            </div>
+          
+            
         </div>
-        <div class="login">
-            <h3>开始游戏(自动存档)</h3>
-            <input type="text" v-model="loginKey" placeholder="请输入用户名" maxlength="8">
-            <input type="text" v-model="loginVal" @keyup.enter="login" placeholder="请输入密码" maxlength="6">
-            <button @click="login">登录</button>
-        </div>
-      
+        
         
     </div>
-    
     <script>
         var app = new Vue({
             el:"#app",
@@ -43,9 +37,9 @@
             methods: {
                 register: function() {
                     that = this;
-                    if (that.registerKey == '' || that.registerVal == '') {
-                        alert('注册信息不能为空');
-                        return;
+                    if (that.registerKey == '' || that.registerKey.match("[a-zA-Z0-9]+@[a-zA-Z0-9]+") == null) {
+                        alert('bogie')
+                        return
                     }
                     axios.get("http://3.139.102.174/register?key="+that.registerKey+"&val="+that.registerVal).then(function(response) {
                         if (response.data == '0') {
@@ -74,7 +68,8 @@
                         alert('Error');
                     });
                 }
-            }
+            },
+            
 
         });
     </script>

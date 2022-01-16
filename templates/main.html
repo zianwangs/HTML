@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to WeRide!</title>
+    <link rel="stylesheet" href="static/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+</head>
+    
+<body>
+    <div id="index_body_banner">
+        <div id="index_body_banner_logo" onclick="location.href='index.html'">
+            WeRide
+        </div>
+        <span>together, make the world a better place</span>
+        <div id="index_body_banner_login">
+            <button id="login_button" onclick="location.href='login.html'">Log out</button>>
+        </div>
+    </div>
+    <div id="login_body_main">
+      <div id="side_bar">
+      <li id="side_bar_name">Hi, XXX!</li>
+      <li id="side_bar_start">Start</li>
+      <li id="side_bar_orders">Ride Orders</li>
+      <li id="side_bar_drive_orders">Drive Orders</li>
+      <li id="side_bar_driver_info">Driver Info</li>
+      <li id="side_bar_account">Account</li>
+      </div>
+      <div id="main_content">
+        <iframe id="main_iframe" src="start.html">
+
+        </iframe>
+      </div>
+      
+    </div>
+    
+    <script>
+      var start = document.getElementById("side_bar_start")
+      var orders = document.getElementById("side_bar_orders")
+      var drive_orders = document.getElementById("side_bar_drive_orders")
+      var iframe = document.getElementById("main_iframe")
+      var driver = document.getElementById("side_bar_driver_info")
+      var account = document.getElementById("side_bar_account")
+      start.onclick = function() {
+        iframe.src = "start.html";
+      }
+      orders.onclick = function() {
+        iframe.src = "orders.html"
+      }
+      driver.onclick = function() {
+        iframe.src = "driver.html"
+      }
+      account.onclick = function() {
+        iframe.src = "account.html"
+      }
+      drive_orders.onclick = function() {
+        iframe.src = "drive_orders.html"
+      }
+
+
+        
+    </script>
+
+</body>
+</html>
