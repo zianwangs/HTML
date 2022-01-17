@@ -51,7 +51,7 @@
             },
             mounted: function() {
                     that = this;
-                    axios.get("/aux_get_name").then(function(response) {  
+                    axios.get("/aux_get_user_info").then(function(response) {  
                     that.username = response.data[0].fields.username
                     }).catch(function(err) {
                         alert('Error');

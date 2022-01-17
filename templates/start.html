@@ -40,7 +40,7 @@
                 drive: function() {
                     that = this;
 
-                    axios.get("/aux_get_is_driver").then(function(response) {
+                    axios.get("/aux_get_user_info").then(function(response) {
                         if (response.data[0].fields.is_driver == true) {
                             location.href = '/drive_search.html'
                         } else {
