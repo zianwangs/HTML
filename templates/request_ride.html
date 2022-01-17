@@ -79,7 +79,7 @@
                     <option value="Yes">Yes</option>
                 </select><br>
                 Do you have any requirement on vehicle type? &nbsp;<select type="text" v-model="car_type" required>
-                    <option selected value="Not specified">Not Specified</option>
+                    <option selected value="Unspecified">Unspecified</option>
                     <option value="Sedan">Sedan</option>
                     <option value="SUV">SUV</option>
                     <option value="Sports Car">Sports Car</option>
@@ -104,7 +104,7 @@
                 arrival_time: '',
                 passenger_num: 0,
                 is_exclusive: "No",
-                car_type:'Not specified',
+                car_type:'Unspecified',
                 special_info: '',
             },
             methods: {
@@ -120,9 +120,8 @@
                     }
                     if (that.passenger_num <= 0 || that.passenger_num > 500) {
                         alert("Please enter a valid passenger number!")
+                        return
                     }
-                    that.arrival_time = that.arrival_time.toString().replace(":", "-")
-                    console.log(that.arrival_time)
                     axios.get("/request/"+that.destination+"/"+that.arrival_time+"/"+that.passenger_num+"/"+that.is_exclusive+"/"+that.car_type+"/"+that.special_info+"/").then(function(response) {
                         if (response.data.status_code != 0) {
                             alert("Please log in first!")
