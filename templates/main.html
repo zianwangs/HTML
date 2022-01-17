@@ -50,13 +50,13 @@
                 
             },
             mounted: function() {
-                    that = this;
-                    axios.get("/aux_get_user_info").then(function(response) {  
-                    that.username = response.data[0].fields.username
-                    that.is_driver = response.data[0].fields.is_driver
-                    }).catch(function(err) {
-                        alert('Error');
-                    });
+              that = this;
+              axios.get("/aux_get_user_info").then(function(response) {  
+              that.username = response.data[0].fields.username
+              that.is_driver = response.data[0].fields.is_driver
+              }).catch(function(err) {
+                  alert('Error');
+              });
             },
             methods: {
               start: function() {
@@ -66,20 +66,29 @@
                 document.getElementById("main_iframe").src = "/orders.html"
               },
               drive_orders: function() {
-                mounted();
+                get();
                 console.log(is_driver)
                 if (is_driver) document.getElementById("main_iframe").src = "/drive_orders.html"
                 else document.getElementById("main_iframe").src = "/not_a_driver.html"
               },
               driver: function() {
-                this.mounted();
+                get();
                 if (is_driver) document.getElementById("main_iframe").src = "/driver.html"
                 else document.getElementById("main_iframe").src = "/not_a_driver.html"
               },
               account: function() {
                 document.getElementById("main_iframe").src = "/account.html"
+              },
+              get: function() {
+                that = this;
+                axios.get("/aux_get_user_info").then(function(response) {  
+                that.username = response.data[0].fields.username
+                that.is_driver = response.data[0].fields.is_driver
+                }).catch(function(err) {
+                    alert('Error');
+                });
               }
-            }
+            },
 
         
             
