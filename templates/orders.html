@@ -17,13 +17,21 @@
             padding-bottom: 5px;
             border-bottom: 1px solid gray;
         }
+        ul {
+            list-style: none;
+            border: 1px solid gray;
+            margin-left: 200px;
+        }
+        li {
+            display: inline;
+        }
     </style>
 </head>
 <body>
     <div id="orders_body">
     <h2>Open:</h2>
     <ul v-for='item in open_list'>
-        <li>Status:<b style="color:greenyellow"> {item.status}</b></li>
+        <li>Status:<b style="color:green"> {item.status}</b></li>
         
         <li>Passenger Number: {item.passenger_num}</li>
         <li>Is exclusive: {item.is_exclusive}</li>
