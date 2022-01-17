@@ -9,15 +9,82 @@
     <!-- <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script> -->
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <title></title>
+    <style>
+        h2 {
+            text-align: center;
+            margin-top: 80px;
+            font-size: 50px;
+            
+        }
+        #request {
+            margin-top: 30px;
+            margin-left: 320px;
+            width: 60%;
+            text-align: center;
+            padding: auto auto;
+            font-size: 25px;
+            border: 1px solid black;
+            padding-bottom: 40px;
+
+        }
+        input {
+            margin-top: 30px;
+            width: 170px;
+            height: 25px;
+        }
+        select {
+            margin-top: 30px;
+            width: 100px;
+            height: 22px;
+            margin-bottom: 0px;
+            text-align: center;
+        }
+        button {
+            background-color: black;
+            color: white;
+            font-size: 20px;
+            margin-top: 40px;
+         
+            width: 220px;
+            height: 80px;
+        }
+        button:hover {
+            cursor: pointer;
+        }
+        textarea {
+            font-style: normal;
+            width: 200px;
+            height: 60px;
+            margin-top: 20px;
+            vertical-align: middle;
+  
+        }
+    </style>
 </head>
 <body>
     <div id="secret_signup">
         <div id="app">
-            <div class="register">
-                <h2>Ride Information</h2>
-                Destination: &nbsp;<input type="text" v-model="registerKey" required maxlength="20">
-                <input type="text" v-model="registerVal" @keyup.enter="register" placeholder="请输入密码" required maxlength="20">
-                <button @click="register">Request a Ride Now</button>
+            <h2>Ride Information</h2>
+            <div id="request">
+                Destination: &nbsp;<input type="text" v-model="destination" required maxlength="50"><br>
+                Arrival Time: &nbsp;<input type="datetime-local" required><br>
+                Passenger Number: &nbsp;<input type="number" required max="500"><br>
+                Do you want a shared ride? &nbsp;
+                <select  required>
+                    <option value="True">No</option>
+                    <option value="False">Yes</option>
+                </select><br>
+                Do you have any requirement on vehicle type? &nbsp;<select required>
+                    <option selected value="ALL">Not Specified</option>
+                    <option value="Sedan">Sedan</option>
+                    <option value="SUV">SUV</option>
+                    <option value="Sports Car">Sports Car</option>
+                    <option value="Convertible">Convertible</option>
+                    <option value="Truck">Truck</option>
+                    <option value="Minivan">Minivan</option>
+                </select><br>
+                Special Info: &nbsp;<textarea></textarea><br>
+                <button @click="request">Request a Ride Now</button>
             </div>
           
             
@@ -29,34 +96,16 @@
         var app = new Vue({
             el:"#app",
             data:{
-                registerKey:'',
-                registerVal:'',
-                loginKey:'',
-                loginVal:''
+                destination: '',
+                arrival_time: null,
+                passenger_num: 0,
+                is_exclusive: false,
+                special_info: '',
             },
             methods: {
-                register: function() {
+                request: function() {
                     that = this;
-                    if (that.registerKey == '' || that.registerKey.match("[a-zA-Z0-9]+@[a-zA-Z0-9]+") == null) {
-                        alert('bogie')
-                        return
-                    }
-                    axios.get("http://3.139.102.174/register?key="+that.registerKey+"&val="+that.registerVal).then(function(response) {
-                        if (response.data == '0') {
-                            alert("用户已存在");
-                        } else {
-                            alert("注册成功");
-                        }
-                    }).catch(function(err) {
-                        alert('Error');
-                    });
-                },
-                login: function() {
-                    that = this;
-                    if (that.loginKey == '' || that.loginVal == '') {
-                        alert('登录信息不能为空')
-                        return;
-                    }
+
                     axios.get("http://3.139.102.174/login?key="+that.loginKey+"&val="+that.loginVal).then(function(response) {
                         if (response.data == '0') {
                             alert("用户名或密码错误");

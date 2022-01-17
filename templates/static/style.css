@@ -3,12 +3,6 @@
     padding: 0;
 }
 
-h2 {
-    text-align: center;
-    font-size: 30px;
-    margin-top: 15px;
-    margin-bottom: 20px;
-}
 #side_bar {
     float: left;
     background-color: #565;
@@ -260,25 +254,8 @@ iframe {
 }
 
 
-#login_img {
-    height: 200%;
-    width: 200%;
-}
 
 
 
 
 
-#app>.register, #app>.login {
-    display: inline-block;
-    margin-top: 20px;
-    width: 350px;
-    height: 200px;
-}
-
-.register:hover {
-    background-color: #aff;
-}
-.login:hover {
-    background-color: #ff9;
-}
