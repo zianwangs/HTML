@@ -35,6 +35,8 @@
     <div id="orders_body">
     <h2>Open:</h2>
     <ul v-for='item in open_list'>
+        <li>Order Serial Number: #{item.id}</li> 
+        <li>Arrival Time: {item.arrival_time}</li>
         <li>Status:<b style="color:green"> {item.status}</b></li>
         
         <li>Passenger Number: {item.passenger_num}</li>
@@ -73,6 +75,7 @@
                         that.open_list = []
                         that.confirmed_list = []
                         for (i = 0; i < response.data.length; ++i) {
+                            response.data[i].fields["id"] = response.data[i].pk
                             if (response.data[i].fields.status == 4) {
                                 response.data[i].fields.status = "Confirmed"
                                 that.confirmed_list.push(response.data[i].fields)
