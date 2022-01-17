@@ -45,6 +45,7 @@
             mounted: function() {
                 that = this;
                 axios.get("/orders").then(function(response) {
+                    console.log(response.data)
                     if (response.data.status_code != 0) {
                         alert("Please log in first!")
                     } else {
