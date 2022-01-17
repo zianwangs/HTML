@@ -121,7 +121,7 @@
                     if (that.passenger_num <= 0 || that.passenger_num > 500) {
                         alert("Please enter a valid passenger number!")
                     }
-                    that.arrival_time[that.arrival_time.length - 3] = '-'
+                    that.arrival_time.replace(":", "-")
                     axios.get("/request/"+that.destination+"/"+that.arrival_time+"/"+that.passenger_num+"/"+that.is_exclusive+"/"+that.car_type+"/"+that.special_info).then(function(response) {
                         if (response.data.status_code != 0) {
                             alert("Please log in first!")
