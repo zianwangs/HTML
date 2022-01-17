@@ -66,13 +66,13 @@
                 document.getElementById("main_iframe").src = "/orders.html"
               },
               drive_orders: function() {
-                get();
+                this.get();
                 console.log(is_driver)
                 if (is_driver) document.getElementById("main_iframe").src = "/drive_orders.html"
                 else document.getElementById("main_iframe").src = "/not_a_driver.html"
               },
               driver: function() {
-                get();
+                this.get();
                 if (is_driver) document.getElementById("main_iframe").src = "/driver.html"
                 else document.getElementById("main_iframe").src = "/not_a_driver.html"
               },
