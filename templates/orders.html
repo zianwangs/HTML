@@ -46,10 +46,10 @@
                 that = this;
                 axios.get("/orders").then(function(response) {
                     console.log(response.data)
-                    if (response.data.status_code != 0) {
+                    if (response.data.status_code == 1) {
                         alert("Please log in first!")
                     } else {
-                        alert("Order has been published!")
+                        
                     }
                 }).catch(function(err) {
                     alert('Error');
