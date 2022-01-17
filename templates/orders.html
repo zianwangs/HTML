@@ -63,7 +63,7 @@
                             if (response.data[i].fields.status == 4) {
                                 that.confirmed_list.push(response.data[i].fields)
                             } else if (response.data[i].fields.status > 0 && response.data[i].fields.status < 4) {
-                                this.open_list.push(response.data[i].fields)
+                                that.open_list.push(response.data[i].fields)
                             }
                         }
                     }
