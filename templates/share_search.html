@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to WeRide!</title>
+    <link rel="stylesheet" href="static/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <style>
+        h1 {
+            margin-top: 20px;
+            margin-left: 30px;
+
+        }
+        input {
+            margin-top: 30px;
+            width: 150px;
+            height: 25px;
+        }
+
+        #request {
+            margin-left: 300px;
+            height: 200px;
+            width: 860px;
+            border-bottom: 1px solid gray;
+            font-size: 21px;
+        }
+        button {
+            
+            background-color: black;
+            color: white;
+            font-size: 18px;
+         
+            width: 230px;
+            height: 40px;
+            margin-left: 70px;
+        }
+        button:hover {
+            cursor: pointer;
+        }
+        #result {
+            margin-top: 50px;
+            height: 500px;
+            background-color: #aaa;
+        }
+        #info {
+            display: inline;
+        }
+        li {
+            display: inline;
+            list-style: none;
+        }
+        .date_input {
+            width: 130px;
+        }
+        .num_input {
+            width: 80px;
+        }
+        #special_info {
+            width: 400px;
+        }
+    </style>
+</head>
+    
+<body>
+    
+    <div id="request">
+        <div id="info">
+        <li>Destination: &nbsp;<input type="text" v-model="destination" required maxlength="50">&nbsp;
+        Earliest Arrival: &nbsp;<input type="date" class="date_input"required>
+        Latest Arrival: &nbsp;<input type="date" class="date_input" required><br>
+    </li>
+        <li>Passenger Number: &nbsp;<input type="number" max="500" class="num_input"> &nbsp;&nbsp;&nbsp;
+            Do you have any requirement on vehicle type? &nbsp;<select required>
+                <option selected value="ALL">Not Specified</option>
+                <option value="Sedan">Sedan</option>
+                <option value="SUV">SUV</option>
+                <option value="Sports Car">Sports Car</option>
+                <option value="Convertible">Convertible</option>
+                <option value="Truck">Truck</option>
+                <option value="Minivan">Minivan</option>
+            </select><br>
+            Special Info: &nbsp;<input id="special_info">  <button>Find Shared Rides</button>
+        </li>
+    </div>
+  
+    <div id="result"></div>
+    </div>
+    
+    
+    
+
+
+</body>
+</html>

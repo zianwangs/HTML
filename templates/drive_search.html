@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to WeRide!</title>
+    <link rel="stylesheet" href="static/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <style>
+        h1 {
+            margin-top: 20px;
+            margin-left: 30px;
+
+        }
+        input {
+            margin-top: 30px;
+            width: 170px;
+            height: 25px;
+        }
+
+        #request {
+            margin-left: 300px;
+            height: 100px;
+            width: 800px;
+            border-bottom: 1px solid gray;
+            font-size: 21px;
+        }
+        button {
+            background-color: black;
+            color: white;
+            font-size: 20px;
+            margin-top: 30px;
+         
+            width: 180px;
+            height: 50px;
+            margin-left: 50px;
+        }
+        button:hover {
+            cursor: pointer;
+        }
+        #result {
+            margin-top: 50px;
+            height: 500px;
+            background-color: #aaa;
+        }
+    </style>
+</head>
+    
+<body>
+    
+    <div id="request">
+        Destination: &nbsp;<input type="text" v-model="destination" required maxlength="50">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        Date: &nbsp;<input type="date" required>
+    <button>Find Orders</button>
+    <div id="result"></div>
+    </div>
+    
+    
+    
+
+
+</body>
+</html>
