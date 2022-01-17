@@ -72,7 +72,7 @@
                 else document.getElementById("main_iframe").src = "/not_a_driver.html"
               },
               driver: function() {
-                mounted();
+                this.mounted();
                 if (is_driver) document.getElementById("main_iframe").src = "/driver.html"
                 else document.getElementById("main_iframe").src = "/not_a_driver.html"
               },
