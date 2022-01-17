@@ -11,25 +11,50 @@
 </head>
 <body>
     <div id="secret_signup">
-        <div class="login_as" id = "signup_as_driver" onclick="location.href='request_ride.html'">
+        <div class="login_as" id = "signup_as_driver" onclick="location.href='/request_ride.html'">
             <div>
                 <div id="login_as_text" >Request to Ride</div>
             </div>
             <div id="mini_arrow"></div>
         </div>
-        <div class="login_as">
+        <div class="login_as" onclick="location.href='/share_search.html'">
             <div>
                 <div id="login_as_text">Request to Share</div>
             </div>
             <div id="mini_arrow"></div>
         </div>
-        <div class="login_as" >
+        <div id="drive"class="login_as" @click="drive" >
             <div>
                 <div id="login_as_text">Request to Drive</div>
             </div>
             <div id="mini_arrow"></div>
         </div>
     </div>
+    <script>
+        var app = new Vue({
+            el:"#drive",
+            data:{
+        
+            },
+            methods: {
+                drive: function() {
+                    that = this;
+
+                    axios.get("/aux_get_is_driver").then(function(response) {
+                        if (response.data[0].fields.is_driver == true) {
+                            location.href = '/drive_search.html'
+                        } else {
+                            location.href = '/not_a_driver.html'
+                        }
+                    }).catch(function(err) {
+                        alert('Error');
+                    });
+                }
+            },
+            
+
+        });
+    </script>
     
 </body>
 </html>
