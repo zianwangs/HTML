@@ -22,14 +22,55 @@
 <body>
     <div id="orders_body">
     <h2>Open:</h2>
-        <li><br>Order Serial Number:1,  Date: 20/12/2012, Status:Completed</li>
-        <li></li>
-        <li></li>
+    <ul v-for='item in open_list'>
+        <li><b>{{item.date}}</b></li>
+        
+        <li>{{item.fengxiang}}</li>
+        <li style="color:red">{{item.high}}</li>
+        <li style="color:blue">{{item.low}}</li>
+        <li>{{item.type}}</li>
+    </ul>
     <br>
     <h2>Confirmed:</h2>
     <br>
     <h2>Completed:</h2>
     </div>
-    
+    <script>
+        var app = new Vue({
+            el:"#orders_body",
+            data:{
+                open_list: [],
+                confirmed_list: [],
+            },
+            mounted: function() {
+                that = this;
+                axios.get("/orders").then(function(response) {
+                    if (response.data.status_code != 0) {
+                        alert("Please log in first!")
+                    } else {
+                        alert("Order has been published!")
+                    }
+                }).catch(function(err) {
+                    alert('Error');
+                });
+            },
+            methods: {
+                request: function() {
+                    that = this;
+                    axios.get().then(function(response) {
+                        if (response.data.status_code != 0) {
+                            alert("Please log in first!")
+                        } else {
+                            alert("Order has been published!")
+                        }
+                    }).catch(function(err) {
+                        alert('Error');
+                    });
+                }
+            },
+            
+
+        });
+    </script>
 </body>
 </html>
