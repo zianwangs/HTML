@@ -29,12 +29,12 @@
         }
         input {
             margin-top: 30px;
-            width: 170px;
+            width: 220px;
             height: 25px;
         }
         select {
             margin-top: 30px;
-            width: 100px;
+            width: 110px;
             height: 22px;
             margin-bottom: 0px;
             text-align: center;
@@ -59,6 +59,10 @@
             vertical-align: middle;
   
         }
+
+        #num {
+            text-align: center;
+        }
     </style>
 </head>
 <body>
@@ -67,15 +71,15 @@
             <h2>Ride Information</h2>
             <div id="request">
                 Destination: &nbsp;<input type="text" v-model="destination" required maxlength="50"><br>
-                Arrival Time: &nbsp;<input type="datetime-local" required><br>
-                Passenger Number: &nbsp;<input type="number" required max="500"><br>
+                Arrival Time: &nbsp;<input type="datetime-local" v-model= "arrival_time" required><br>
+                Passenger Number: &nbsp;<input type="number" v-model="passenger_num"required max="500" id="num"><br>
                 Do you want a shared ride? &nbsp;
-                <select  required>
-                    <option value="True">No</option>
-                    <option value="False">Yes</option>
+                <select v-model="is_exclusive" required>
+                    <option value="No">No</option>
+                    <option value="Yes">Yes</option>
                 </select><br>
-                Do you have any requirement on vehicle type? &nbsp;<select required>
-                    <option selected value="ALL">Not Specified</option>
+                Do you have any requirement on vehicle type? &nbsp;<select type="text" v-model="car_type" required>
+                    <option selected value="Not specified">Not Specified</option>
                     <option value="Sedan">Sedan</option>
                     <option value="SUV">SUV</option>
                     <option value="Sports Car">Sports Car</option>
@@ -83,7 +87,7 @@
                     <option value="Truck">Truck</option>
                     <option value="Minivan">Minivan</option>
                 </select><br>
-                Special Info: &nbsp;<textarea></textarea><br>
+                Special Info: &nbsp;<textarea v-model="special_info"></textarea><br>
                 <button @click="request">Request a Ride Now</button>
             </div>
           
@@ -97,18 +101,30 @@
             el:"#app",
             data:{
                 destination: '',
-                arrival_time: null,
+                arrival_time: '',
                 passenger_num: 0,
-                is_exclusive: false,
+                is_exclusive: "No",
+                car_type:'Not specified',
                 special_info: '',
             },
             methods: {
                 request: function() {
                     that = this;
-
-                    axios.get("http://3.139.102.174/login?key="+that.loginKey+"&val="+that.loginVal).then(function(response) {
-                        if (response.data == '0') {
-                            alert("用户名或密码错误");
+                    if (that.destination == '') {
+                        alert('Destination cannot be empty!')
+                        return
+                    }
+                    if (that.arrival_time == '') {
+                        alert("Arrival time cannot be empty!")
+                        return
+                    }
+                    if (that.passenger_num <= 0 || that.passenger_num > 500) {
+                        alert("Please enter a valid passenger number!")
+                    }
+                    console.log(that.arrival_time)
+                    axios.get("/"+that.destination+"/"+that.arrival_time+"/"+that.passenger_num+"/"+that.is_exclusive+"/"+that.car_type+"/"+that.special_info).then(function(response) {
+                        if (response.data.status_code != 0) {
+                            alert("Please log in first!");
                         } else {
                             localStorage.setItem("id", that.loginKey);
                             document.write(response.data);
