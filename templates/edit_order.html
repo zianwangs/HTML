@@ -120,8 +120,7 @@
                             that.is_exclusive = response.data[0].fields.is_exclusive ? "No" : "Yes"
                             that.car_type = response.data[0].fields.car_type
                             that.special_info = response.data[0].fields.special_info
-                            if (response.data[0].status == 2) {
-                                console.log("sdsd")
+                            if (response.data[0].fields.status == 2) {
                                 document.getElementById("t").disabled = true
                                 document.getElementById("d").disabled = true
                                 document.getElementById("ex").disabled = true
