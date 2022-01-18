@@ -21,7 +21,7 @@
         }
 
         #request {
-            margin-left: 300px;
+            margin-left: 400px;
             height: 100px;
             width: 800px;
             border-bottom: 1px solid gray;
@@ -45,6 +45,18 @@
             height: 500px;
             background-color: white;
         }
+        ul {
+            font-size: 20px;
+            list-style: none;
+            width: 800px;
+            border: 1px solid gray;
+            margin-left: 200px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+        li {
+            display: inline;
+        }
     </style>
 </head>
     
@@ -67,6 +79,7 @@
     <script>
         var app = new Vue({
             el:"#drive_search",
+            delimiters: ['{', '}'],
             data:{
                 destination: '',
                 date: '',
