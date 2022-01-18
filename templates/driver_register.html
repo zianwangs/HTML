@@ -69,7 +69,7 @@
             <div id="request">
                 Real Name: &nbsp;<input type="text" v-model="real_name" required maxlength="50"><br>
                 Licence Number: &nbsp;<input type="text" v-model="licence_number" required><br>
-                Max Capacity: &nbsp;<input type="text" v-model="car_capacity" required max="500"><br>
+                Max Capacity: &nbsp;<input type="number" v-model="car_capacity" required max="500"><br>
             
                 Please specify you vehicle type. &nbsp;<select v-model="car_type" required>
                     <option selected value="Sedan">Sedan</option>
