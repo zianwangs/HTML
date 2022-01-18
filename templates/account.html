@@ -70,8 +70,8 @@
             <h2>Your Account Information
             </h2>
             <div id="request">
-                Username: &nbsp;<input id="u"type="text" required maxlength="50" disabled><br>
-                Password: &nbsp;<input id="p" type="text" v-model="password" disabled required><br>
+                Username: &nbsp;<input id="u"type="text" v-model="username" required maxlength="50" disabled><br>
+                Password: &nbsp;<input id="p" type="password" v-model="password" disabled required><br>
                 E-mail: &nbsp;<input id="e" type="number" v-model="email" disabled required max="500"><br>
             
 
@@ -88,6 +88,7 @@
         var app = new Vue({
             el:"#app",
             data:{
+                username:'',
                 password: '',
                 email: '',
                 
@@ -100,6 +101,7 @@
                             alert("Please log in first!")
                             location.href = "login.html"
                         } else { 
+                            that.username = response.data[0].fields.username
                             that.password = response.data[0].fields.password
                             that.email = response.data[0].fields.email
                             
