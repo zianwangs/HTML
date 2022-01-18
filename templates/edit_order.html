@@ -88,7 +88,7 @@
                     <option value="Minivan">Minivan</option>
                 </select><br>
                 Special Info: &nbsp;<textarea id="si" v-model="special_info"></textarea><br>
-                <button @click="submit">Request a Ride Now</button>
+                <button @click="submit">Submit Change</button>
             </div>
           
             
@@ -116,8 +116,8 @@
                             console.log(response.data)
                             that.destination = response.data[0].fields.destination
                             that.arrival_time = response.data[0].fields.arrival_time
-                            that.passenger_num = response.data[0].fields.passenger_num
-                            that.is_exclusive = response.data[0].fields.is_exclusive
+                            that.passenger_num = parseInt(response.data[0].fields.passenger_num)
+                            that.is_exclusive = response.data[0].fields.is_exclusive == "true" ? "No" : "Yes"
                             that.car_type = response.data[0].fields.car_type
                             that.special_info = response.data[0].fields.special_info
                             
