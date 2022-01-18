@@ -118,8 +118,8 @@
                             alert("Please log in first!");
                             location.href = "login.html"
                         } else {
-                            localStorage.setItem("id", that.loginKey);
-                            document.write(response.data);
+                            alert("Congralutions! Now you are a WeRide driver!")
+                            location.href = "driver.html"
                         }
                     }).catch(function(err) {
                         alert('Error');
