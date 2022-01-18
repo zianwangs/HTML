@@ -5,96 +5,140 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="static/style.css">
-    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script> -->
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <title></title>
     <style>
         h2 {
-            text-align:left;
-            width: 87%;
+            text-align: center;
+            margin-top: 80px;
+            font-size: 50px;
+            
+        }
+        #request {
             margin-top: 30px;
-            margin-left: 80px;
-            padding-bottom: 5px;
-            border-bottom: 1px solid gray;
+            margin-left: 320px;
+            width: 60%;
+            text-align: center;
+            padding: auto auto;
+            font-size: 22px;
+            border: 1px solid black;
+            padding-bottom: 40px;
+
         }
-        ul {
-            font-size: 20px;
-            list-style: none;
-            width: 800px;
-            border: 1px solid gray;
-            margin-left: 200px;
-            border-radius: 10px;
+        input {
+            margin-top: 30px;
+            width: 180px;
+            height: 25px;
+        }
+        select {
+            margin-top: 30px;
+            width: 120px;
+            height: 22px;
+            margin-bottom: 0px;
+            text-align: center;
+        }
+        button {
+            background-color: black;
+            color: white;
+            font-size: 24px;
+            margin-top: 40px;
+         
+            width: 220px;
+            height: 80px;
+        }
+        button:hover {
+            cursor: pointer;
+        }
+        textarea {
+            font-style: normal;
+            width: 200px;
+            height: 60px;
             margin-top: 20px;
+            vertical-align: middle;
+  
         }
-        li {
-            display: inline;
+        #sub {
+            display: none;
         }
     </style>
 </head>
 <body>
-    <div id="orders_body">
-    <h2>Confirmed:</h2>
-    <ul v-for='item in open_list'>
-        <li>Order Serial Number: #{item.id}</li> 
-        <li>Arrival Time: {item.arrival_time}</li>
-        <li>Status:<b style="color:green"> {item.status}</b></li>
+    <div id="secret_signup">
+        <div id="app">
+            <h2>Your Account Information
+            </h2>
+            <div id="request">
+                Username: &nbsp;<input id="u"type="text" required maxlength="50" disabled><br>
+                Password: &nbsp;<input id="p" type="text" v-model="password" disabled required><br>
+                E-mail: &nbsp;<input id="e" type="number" v-model="email" disabled required max="500"><br>
+            
+
+                <button @click="edit">Edit</button>
+                <button id="sub" @click="submit">Submit</button>
+            </div>
+          
+            
+        </div>
         
-        <li>Passenger Number: {item.passenger_num}</li>
-        <li>Is exclusive: {item.is_exclusive}</li>
-        <li>Vehicle Type: {item.car_type}</li>
-        <li>Special info: {item.special_info}</li>
-    </ul>
-    <br>
-    <h2>Completed:</h2>
-    <ul v-for='item in confirmed_list'>
-        <li><b>{{item.date}}</b></li>
         
-        <li>{{item.fengxiang}}</li>
-        <li style="color:red">{{item.high}}</li>
-        <li style="color:blue">{{item.low}}</li>
-        <li>{{item.type}}</li>
-    </ul>
     </div>
     <script>
         var app = new Vue({
-            el:"#orders_body",
-            delimiters: ['{', '}'],
+            el:"#app",
             data:{
-                open_list: [],
-                confirmed_list: [],
+                password: '',
+                email: '',
+                
             },
             mounted: function() {
-                that = this;
-                axios.get("/account").then(function(response) {
-                    console.log(response.data)
-                    if (response.data.status_code == 1) {
-                        alert("Please log in first!")
-                    } else {
-                        that.open_list = []
-                        that.confirmed_list = []
-                        for (i = 0; i < response.data.length; ++i) {
-                            response.data[i].fields["id"] = response.data[i].pk
-                            if (response.data[i].fields.status == 4) {
-                                response.data[i].fields.status = "Confirmed"
-                                that.confirmed_list.push(response.data[i].fields)
-                            } else if (response.data[i].fields.status > 0 && response.data[i].fields.status < 4) {
-                                response.data[i].fields.status = "Open"
-                                that.open_list.push(response.data[i].fields)
-                            }
+                that = this
+                that = this
+                axios.get("aux_get_user_info").then(function(response) {
+                        if (response.data.status_code == 1) {
+                            alert("Please log in first!")
+                            location.href = "login.html"
+                        } else { 
+                            that.password = response.data[0].fields.password
+                            that.email = response.data[0].fields.email
+                            
                         }
-                    }
-                }).catch(function(err) {
-                    alert('Error');
-                });
+                    }).catch(function(err) {
+                        alert('Error');
+                    });
             },
             methods: {
-                request: function() {
+                edit: function() {
+                    // unsafe
+                    document.getElementById("p").disabled = false
+                    document.getElementById("e").disabled = false
+                    document.getElementById("sub").style.display = "inline"
+                },
+                submit: function() {
                     that = this;
-                    axios.get().then(function(response) {
-                        if (response.data.status_code != 0) {
-                            alert("Please log in first!")
+                    if (that.password == '') {
+                        alert("Password cannot be empty!")
+                        return
+                    }
+                    if (that.email == '') {
+                        alert("E-mail cannot be empty!")
+                        return
+                    }
+                    if (that.email.match("[a-zA-Z0-9]+@[a-zA-Z0-9]+(.[a-zA-Z0-9]+)+") == null) {
+                        alert("Invalid Email address!")
+                        return
+                    }
+                    axios.get("change_user_info/"+that.password+"/"+that.email).then(function(response) {
+                        if (response.data.status_code == 1) {
+                            alert("Please log in first!");
+                            location.href = "login.html"
                         } else {
-                            alert("Order has been published!")
+                            alert("Information submitted!")
+                            document.getElementById("sub").style.display = "none"
+                            document.getElementById("p").disabled = true
+                            document.getElementById("e").disabled = true
+                            
                         }
                     }).catch(function(err) {
                         alert('Error');
@@ -105,5 +149,6 @@
 
         });
     </script>
+    
 </body>
 </html>
