@@ -52,6 +52,7 @@
             mounted: function() {
               that = this;
               axios.get("/aux_get_user_info").then(function(response) {  
+                console.log(response.data)
               that.username = response.data[0].fields.username
               that.is_driver = response.data[0].fields.is_driver
               }).catch(function(err) {
