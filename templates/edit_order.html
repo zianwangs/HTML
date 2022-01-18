@@ -113,14 +113,20 @@
                         if (response.data.status_code == 1) {
                             alert("Please log in first!")
                         } else {
-                            console.log(response.data.fields)
+                            console.log(response.data[0].fields)
                             that.destination = response.data[0].fields.destination
                             that.arrival_time = response.data[0].fields.arrival_time
                             that.passenger_num = response.data[0].fields.passenger_num
                             that.is_exclusive = response.data[0].fields.is_exclusive ? "No" : "Yes"
                             that.car_type = response.data[0].fields.car_type
                             that.special_info = response.data[0].fields.special_info
-                            
+                            if (response.data[0].status == 2) {
+                                document.getElementById("t").disabled = true
+                                document.getElementById("d").disabled = true
+                                document.getElementById("ex").disabled = true
+                                document.getElementById("ct").disabled = true
+                                document.getElementById("si").disabled = true
+                            }
                         }
                     }).catch(function(err) {
                         alert('Error');
