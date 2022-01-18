@@ -111,7 +111,6 @@
                             alert("You are not a driver yet, please register first!")
                             location.href = "driver_register.html"
                         } else {
-                            
                             console.log(response.data)
                             that.real_name = response.data[0].fields.real_name
                             that.licence_number = response.data[0].fields.licence_number
