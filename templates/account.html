@@ -101,6 +101,7 @@
                             alert("Please log in first!")
                             location.href = "login.html"
                         } else { 
+                            console.log(response.data[0])
                             that.username = response.data[0].fields.username
                             that.password = response.data[0].fields.password
                             that.email = response.data[0].fields.email
