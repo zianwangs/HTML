@@ -52,7 +52,6 @@
             mounted: function() {
               that = this;
               axios.get("/aux_get_user_info").then(function(response) {  
-                console.log(response.data)
               that.username = response.data[0].fields.username
               that.is_driver = response.data[0].fields.is_driver
               }).catch(function(err) {
@@ -72,9 +71,8 @@
                 else document.getElementById("main_iframe").src = "/not_a_driver.html"
               },
               driver: function() {
-                that = this
                 this.get()
-                if (that.is_driver) document.getElementById("main_iframe").src = "/driver.html"
+                if (this.is_driver) document.getElementById("main_iframe").src = "/driver.html"
                 else document.getElementById("main_iframe").src = "/not_a_driver.html"
               },
               account: function() {
