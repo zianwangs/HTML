@@ -121,6 +121,7 @@
                             that.car_type = response.data[0].fields.car_type
                             that.special_info = response.data[0].fields.special_info
                             if (response.data[0].status == 2) {
+                                console.log("sdsd")
                                 document.getElementById("t").disabled = true
                                 document.getElementById("d").disabled = true
                                 document.getElementById("ex").disabled = true
