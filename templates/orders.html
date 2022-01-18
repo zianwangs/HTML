@@ -29,6 +29,17 @@
         li {
             display: inline;
         }
+        #edit_ {
+            font-size: 20px;
+            width: 200px;
+            height: 50px;
+            background-color: black;
+            color: white;
+            
+        }
+        button:hover {
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -44,6 +55,7 @@
         <li>Is exclusive: {item.is_exclusive}</li>
         <li>Vehicle Type: {item.car_type}</li>
         <li>Special info: {item.special_info}</li>
+        <button id="edit_" @click="edit(item.id)">Complete</button>
     </ul>
     <br>
     <h2>Confirmed:</h2>
@@ -56,6 +68,7 @@
         <li>Is exclusive: {item.is_exclusive}</li>
         <li>Vehicle Type: {item.car_type}</li>
         <li>Special info: {item.special_info}</li>
+        
     </ul>
     
     </div>
@@ -92,13 +105,13 @@
                 });
             },
             methods: {
-                request: function() {
+                edit: function(oid) {
                     that = this;
-                    axios.get().then(function(response) {
-                        if (response.data.status_code != 0) {
+                    axios.get("edit/"+oid).then(function(response) {
+                        if (response.data.status_code == 1) {
                             alert("Please log in first!")
                         } else {
-                            alert("Order has been published!")
+                            location.href = "/edit_order.html"
                         }
                     }).catch(function(err) {
                         alert('Error');
