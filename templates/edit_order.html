@@ -100,6 +100,7 @@
         var app = new Vue({
             el:"#app",
             data:{
+                order_id: '',
                 destination: '',
                 arrival_time: '',
                 passenger_num: 0,
@@ -113,6 +114,7 @@
                         if (response.data.status_code == 1) {
                             alert("Please log in first!")
                         } else {
+                            that.order_id = response.data[0].pk
                             console.log(response.data[0].fields)
                             that.destination = response.data[0].fields.destination
                             that.arrival_time = response.data[0].fields.arrival_time
@@ -147,11 +149,11 @@
                         alert("Please enter a valid passenger number!")
                         return
                     }
-                    axios.get("/request/"+that.destination+"/"+that.arrival_time+"/"+that.passenger_num+"/"+that.is_exclusive+"/"+that.car_type+"/"+that.special_info).then(function(response) {
-                        if (response.data.status_code != 0) {
+                    axios.get("/change_order/"+that.order_id+"/"+that.destination+"/"+that.arrival_time+"/"+that.passenger_num+"/"+that.is_exclusive+"/"+that.car_type+"/"+that.special_info).then(function(response) {
+                        if (response.data.status_code == 1) {
                             alert("Please log in first!")
                         } else {
-                            alert("Order has been published!")
+                            alert("Order has been changed!")
                             location.href = "/orders.html"
                         }
                     }).catch(function(err) {
