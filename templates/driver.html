@@ -159,16 +159,16 @@
                         alert("Please enter a valid vehicle capacity!")
                         return
                     }
-                    axios.get("driver_register/"+that.real_name+"/"+that.licence_number+"/"+that.car_capacity+"/"+that.car_type+"/"+that.special_info).then(function(response) {
+                    axios.get("change_driver_info/"+that.real_name+"/"+that.licence_number+"/"+that.car_capacity+"/"+that.car_type+"/"+that.special_info).then(function(response) {
                         if (response.data.status_code == 1) {
                             alert("Please log in first!");
                             location.href = "login.html"
                         } else if (response.data.status_code == 2){
-                            alert("You cannot register twice!")
-                            location.href = "driver.html"
+                            alert("You are not a driver yet, please register first!")
+                            location.href = "driver_register.html"
                         } else {
-                            alert("Congralutions! Now you are a WeRide driver!")
-                            location.href = "driver.html"
+                            alert("Information submitted!")
+                            document.getElementById("sub").style.display = "none"
                         }
                     }).catch(function(err) {
                         alert('Error');
