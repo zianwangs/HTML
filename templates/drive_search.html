@@ -91,7 +91,7 @@
             data:{
                 destination: '',
                 date: '',
-                orders: []
+                orders: [],
             },
             methods: {
                 search: function() {
@@ -112,6 +112,7 @@
                             alert("You are not a driver yet, please register first!")
                             location.href = "driver_register.html"
                         } else {
+                            console.log(response.data)
                             that.orders = []
                             for (i = 0; i < response.data.length; ++i) {
                                 response.data[i].fields["order_id"] = response.data[i].pk
