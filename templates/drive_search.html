@@ -73,14 +73,14 @@
     <button @click="search">Find Orders</button>
     <div id="result">
         You found {orders.length} orders.<br>
-        <ul v-for='item in orders'>
+        <ul v-for='(item, i) in orders'>
             <li>Order ID: {item.order_id}</li>
             <li>Arrival Time: {item.arrival_time}</li>
             <li>Passenger Number: {item.passenger_num}</li>
             <li>Is exclusive: {item.is_exclusive}</li>
             <li>Vehicle Type: {item.car_type}</li>
             <li>Special info: {item.special_info}</li>
-            <button id="confirm_" @click="confirm">Confirm</button>
+            <button id="confirm_" @click="confirm(i)">Confirm</button>
         </ul>
     </div>
     </div>
@@ -112,12 +112,10 @@
                             alert("You are not a driver yet, please register first!")
                             location.href = "driver_register.html"
                         } else {
-                            console.log(response.data)
                             that.orders = []
                             for (i = 0; i < response.data.length; ++i) {
                                 response.data[i].fields["order_id"] = response.data[i].pk
-                                that.orders.push(response.data[i].fields)
-                            
+                                that.orders.push(response.data[i].fields)                   
                             }
                             
                         }
@@ -126,8 +124,24 @@
                     });
                 }
                 ,
-            confirm: function() {
-
+            confirm: function(i) {
+                that = this;
+                console.log(i)
+                axios.get("confirm/"+orders[i].order_id).then(function(response) {
+                    if (response.data.status_code == 1) {
+                        alert("Please log in first!");
+                        location.href = "login.html"
+                    } else if (response.data.status_code == 2){
+                        alert("You are not a driver yet, please register first!")
+                        location.href = "driver_register.html"
+                    } else {
+                        alert("Order confirmed!")
+                        location.href = "drive_orders.html"
+                        
+                    }
+                }).catch(function(err) {
+                    alert('Error');
+                });
             }
             
         }
