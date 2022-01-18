@@ -132,6 +132,7 @@
             methods: {
                 edit: function() {
                     if (this.num_of_orders != 0) {
+                        console.log(this.num_of_orders)
                         alert("You cannot edit you driver info with incomplete drive orders!")
                         location.href = "drive_orders.html"
                         return
