@@ -93,8 +93,7 @@
         <li>Destination: &nbsp;<input type="text" v-model="destination" required maxlength="50">&nbsp;
         Earliest Arrival: &nbsp;<input type="datetime-local" v-model="earliest_time" class="date_input"required>
         Latest Arrival: &nbsp;<input type="datetime-local" v-model="latest_time" class="date_input" required><br>
-    </li>
-        <li>Passenger Number: &nbsp;<input type="number" max="500" class="num_input" v-model="passenger_num"> &nbsp;&nbsp;&nbsp;
+    </li> &nbsp;&nbsp;&nbsp;
             Do you have any requirement on vehicle type? &nbsp;<select v-model="car_type" required>
                 <option selected value="Unspecified">Unspecified</option>
                 <option value="Sedan">Sedan</option>
@@ -129,7 +128,7 @@
                 destination: '',
                 earliest_time: '',
                 latest_time: '',
-                passenger_num: '',
+                passenger_num: 1,
                 car_type: 'Unspecified',
                 special_info: '',
                 orders: [],
@@ -168,17 +167,19 @@
                 ,
             join: function(oid) {
                 that = this;
-                console.log(oid)
-                axios.get("confirm/"+oid).then(function(response) {
+                var x = prompt("Your passenger number would be", "0")
+                if (x == null) {
+                    return
+                }
+                x = parseInt(x)
+                
+                axios.get("join/"+oid+"/"+x).then(function(response) {
                     if (response.data.status_code == 1) {
                         alert("Please log in first!");
                         location.href = "login.html"
-                    } else if (response.data.status_code == 2){
-                        alert("You are not a driver yet, please register first!")
-                        location.href = "driver_register.html"
                     } else {
-                        alert("Order confirmed!")
-                        location.href = "drive_orders.html"
+                        alert("Joined!")
+                        location.href = "orders.html"
                         
                     }
                 }).catch(function(err) {
