@@ -80,7 +80,7 @@
             <li>Is exclusive: {item.is_exclusive}</li>
             <li>Vehicle Type: {item.car_type}</li>
             <li>Special info: {item.special_info}</li>
-            <button id="confirm_" @click="confirm(i)">Confirm</button>
+            <button id="confirm_" @click="confirm(item.order_id)">Confirm</button>
         </ul>
     </div>
     </div>
@@ -124,10 +124,10 @@
                     });
                 }
                 ,
-            confirm: function(i) {
+            confirm: function(oid) {
                 that = this;
-                console.log(i)
-                axios.get("confirm/"+orders[i].order_id).then(function(response) {
+                console.log(oid)
+                axios.get("confirm/"+oid).then(function(response) {
                     if (response.data.status_code == 1) {
                         alert("Please log in first!");
                         location.href = "login.html"
