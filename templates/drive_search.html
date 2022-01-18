@@ -69,11 +69,13 @@
     <div id="result">
         You found {orders.length} orders.<br>
         <ul v-for='item in orders'>
+            <li>Order ID: {item.order_id}</li>
             <li>Arrival Time: {item.arrival_time}</li>
             <li>Passenger Number: {item.passenger_num}</li>
             <li>Is exclusive: {item.is_exclusive}</li>
             <li>Vehicle Type: {item.car_type}</li>
             <li>Special info: {item.special_info}</li>
+            <button @click="confrim">Confirm</button>>
         </ul>
     </div>
     </div>
@@ -106,8 +108,11 @@
                             location.href = "driver_register.html"
                         } else {
                             that.orders = []
-                            for (i = 0; i < response.data.length; ++i)
+                            for (i = 0; i < response.data.length; ++i) {
+                                response.data[i].fields["order_id"] = response.data[i].pk
                                 that.orders.push(response.data[i].fields)
+                            
+                            }
                             
                         }
                     }).catch(function(err) {
