@@ -118,7 +118,7 @@
                             that.car_capacity = response.data[0].fields.car_capacity
                             that.car_type = response.data[0].fields.car_type
                             that.special_info = response.data[0].fields.special_info
-                            that.num_of_orders = response.data[0].num_of_orders
+                            that.num_of_orders = response.data[0].number_of_incomplete_orders
                             document.getElementById("t").disabled = true
                             document.getElementById("r").disabled = true
                             document.getElementById("c").disabled = true
