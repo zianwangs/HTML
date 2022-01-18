@@ -117,6 +117,9 @@
                         if (response.data.status_code == 1) {
                             alert("Please log in first!");
                             location.href = "login.html"
+                        } else if (response.data.status_code == 2){
+                            alert("You cannot register twice!")
+                            location.href = "driver.html"
                         } else {
                             alert("Congralutions! Now you are a WeRide driver!")
                             location.href = "driver.html"
