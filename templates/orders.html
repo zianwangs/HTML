@@ -47,12 +47,14 @@
     <br>
     <h2>Confirmed:</h2>
     <ul v-for='item in confirmed_list'>
-        <li><b>{{item.date}}</b></li>
+        <li>Order Serial Number: #{item.id}</li> 
+        <li>Arrival Time: {item.arrival_time}</li>
+        <li>Status:<b style="color:blue"> {item.status}</b></li>
         
-        <li>{{item.fengxiang}}</li>
-        <li style="color:red">{{item.high}}</li>
-        <li style="color:blue">{{item.low}}</li>
-        <li>{{item.type}}</li>
+        <li>Passenger Number: {item.passenger_num}</li>
+        <li>Is exclusive: {item.is_exclusive}</li>
+        <li>Vehicle Type: {item.car_type}</li>
+        <li>Special info: {item.special_info}</li>
     </ul>
     <br>
     <h2>Completed:</h2>
