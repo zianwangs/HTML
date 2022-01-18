@@ -110,14 +110,13 @@
                         } else if (response.data.status_code == 2) {
                             alert("You are not a driver yet, please register first!")
                             location.href = "driver_register.html"
-                        } else {
-                            console.log(response.data[0].fields.number_of_incomplete_orders)
+                        } else { 
                             that.real_name = response.data[0].fields.real_name
                             that.licence_number = response.data[0].fields.licence_number
                             that.car_capacity = response.data[0].fields.car_capacity
                             that.car_type = response.data[0].fields.car_type
                             that.special_info = response.data[0].fields.special_info
-                            that.num_of_orders = response.data[0].number_of_incomplete_orders
+                            that.num_of_orders = response.data[0].fields.number_of_incomplete_orders
                             document.getElementById("t").disabled = true
                             document.getElementById("r").disabled = true
                             document.getElementById("c").disabled = true
@@ -132,7 +131,6 @@
             methods: {
                 edit: function() {
                     if (this.num_of_orders != 0) {
-                        console.log(this.num_of_orders)
                         alert("You cannot edit you driver info with incomplete drive orders!")
                         location.href = "drive_orders.html"
                         return
