@@ -20,7 +20,7 @@
             height: 25px;
         }
 
-        #request {
+        #share_search {
             margin-left: 300px;
             height: 200px;
             width: 860px;
@@ -91,8 +91,8 @@
     <div id="share_search">
         <div id="info">
         <li>Destination: &nbsp;<input type="text" v-model="destination" required maxlength="50">&nbsp;
-        Earliest Arrival: &nbsp;<input type="date" v-model="earliest_time" class="date_input"required>
-        Latest Arrival: &nbsp;<input type="date" v-model="latest_time" class="date_input" required><br>
+        Earliest Arrival: &nbsp;<input type="datetime-local" v-model="earliest_time" class="date_input"required>
+        Latest Arrival: &nbsp;<input type="datetime-local" v-model="latest_time" class="date_input" required><br>
     </li>
         <li>Passenger Number: &nbsp;<input type="number" max="500" class="num_input" v-model="passenger_num"> &nbsp;&nbsp;&nbsp;
             Do you have any requirement on vehicle type? &nbsp;<select v-model="car_type" required>
