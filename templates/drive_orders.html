@@ -29,7 +29,11 @@
         li {
             display: inline;
         }
-        
+        #confirm_ {
+            font-size: 20px;
+            width: 200px;
+            height: 50px;
+        }
     </style>
 </head>
 <body>
@@ -44,6 +48,7 @@
         <li>Is exclusive: {item.is_exclusive}</li>
         <li>Vehicle Type: {item.car_type}</li>
         <li>Special info: {item.special_info}</li>
+        <button id="complete_" @click="complete(item.id)">Complete</button>
     </ul>
     <br>
     
@@ -86,6 +91,24 @@
                             alert("Please log in first!")
                         } else {
                             alert("Order has been published!")
+                        }
+                    }).catch(function(err) {
+                        alert('Error');
+                    });
+                },
+                complete: function(oid) {
+                    that = this;
+                    axios.get("complete/"+oid).then(function(response) {
+                        if (response.data.status_code == 1) {
+                            alert("Please log in first!");
+                            location.href = "login.html"
+                        } else if (response.data.status_code == 2){
+                            alert("You are not a driver yet, please register first!")
+                            location.href = "driver_register.html"
+                        } else {
+                            alert("Order completed!")
+                            location.href = "drive_orders.html"
+                            
                         }
                     }).catch(function(err) {
                         alert('Error');
