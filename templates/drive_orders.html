@@ -35,10 +35,10 @@
 <body>
     <div id="orders_body">
     <h2>Confirmed:</h2>
-    <ul v-for='item in open_list'>
+    <ul v-for='item in confirmed_list'>
         <li>Order Serial Number: #{item.id}</li> 
         <li>Arrival Time: {item.arrival_time}</li>
-        <li>Status:<b style="color:green"> {item.status}</b></li>
+        <li>Status:<b style="color:blue"> {item.status}</b></li>
         
         <li>Passenger Number: {item.passenger_num}</li>
         <li>Is exclusive: {item.is_exclusive}</li>
@@ -46,41 +46,31 @@
         <li>Special info: {item.special_info}</li>
     </ul>
     <br>
-    <h2>Completed:</h2>
-    <ul v-for='item in confirmed_list'>
-        <li><b>{{item.date}}</b></li>
-        
-        <li>{{item.fengxiang}}</li>
-        <li style="color:red">{{item.high}}</li>
-        <li style="color:blue">{{item.low}}</li>
-        <li>{{item.type}}</li>
-    </ul>
+    
     </div>
     <script>
         var app = new Vue({
             el:"#orders_body",
             delimiters: ['{', '}'],
             data:{
-                open_list: [],
                 confirmed_list: [],
             },
             mounted: function() {
                 that = this;
-                axios.get("/orders").then(function(response) {
-                    console.log(response.data)
+                axios.get("/drive_orders").then(function(response) {
                     if (response.data.status_code == 1) {
                         alert("Please log in first!")
+                        location.href = 'login.html'
+                    } else if (response.data.status_code == 2) {
+                        alert("You are not a driver yet, please register first!")
+                        location.href = 'driver_register.html'
                     } else {
-                        that.open_list = []
                         that.confirmed_list = []
                         for (i = 0; i < response.data.length; ++i) {
                             response.data[i].fields["id"] = response.data[i].pk
                             if (response.data[i].fields.status == 4) {
                                 response.data[i].fields.status = "Confirmed"
                                 that.confirmed_list.push(response.data[i].fields)
-                            } else if (response.data[i].fields.status > 0 && response.data[i].fields.status < 4) {
-                                response.data[i].fields.status = "Open"
-                                that.open_list.push(response.data[i].fields)
                             }
                         }
                     }
