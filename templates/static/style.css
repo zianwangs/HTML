@@ -109,8 +109,7 @@ iframe {
 #signup_box>li>input {
     display: inline-block;
     border-width: 0px;
-    border-bottom-width: 1px;
-    border-bottom-color: #ddd; 
+    border-bottom: 1px solid #ddd; 
     height: 25px;
     padding: none;
     margin: none;
