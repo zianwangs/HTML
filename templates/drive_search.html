@@ -43,19 +43,66 @@
         #result {
             margin-top: 50px;
             height: 500px;
-            background-color: #aaa;
+            background-color: white;
         }
     </style>
 </head>
     
 <body>
     
-    <div id="request">
+    <div id="drive_search">
         Destination: &nbsp;<input type="text" v-model="destination" required maxlength="50">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        Date: &nbsp;<input type="date" required>
-    <button>Find Orders</button>
-    <div id="result"></div>
+        Date: &nbsp;<input v-model="date" type="date" required>
+    <button @click="search">Find Orders</button>
+    <div id="result">
+        <ul v-for='item in orders'>
+            <li>Arrival Time: {item.arrival_time}</li>
+            <li>Passenger Number: {item.passenger_num}</li>
+            <li>Is exclusive: {item.is_exclusive}</li>
+            <li>Vehicle Type: {item.car_type}</li>
+            <li>Special info: {item.special_info}</li>
+        </ul>
     </div>
+    </div>
+    <script>
+        var app = new Vue({
+            el:"#drive_search",
+            data:{
+                destination: '',
+                date: '',
+                orders: []
+            },
+            methods: {
+                search: function() {
+                    that = this;
+                    if (that.destination == '') {
+                        alert("Destination cannot be empty!")
+                        return
+                    }
+                    if (that.date == '') {
+                        alert("Date cannot be empty!")
+                        return
+                    }
+                    axios.get("driver_search/"+that.destination+"/"+that.date).then(function(response) {
+                        if (response.data.status_code == 1) {
+                            alert("Please log in first!");
+                            location.href = "login.html"
+                        } else if (response.data.status_code == 2){
+                            alert("You are not a driver yet, please register first!")
+                            location.href = "driver_register.html"
+                        } else {
+                            
+                            
+                        }
+                    }).catch(function(err) {
+                        alert('Error');
+                    });
+                }
+            },
+            
+
+        });
+    </script>
     
     
     
