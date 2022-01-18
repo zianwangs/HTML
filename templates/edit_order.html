@@ -70,15 +70,15 @@
         <div id="app">
             <h2>Edit Order</h2>
             <div id="request">
-                Destination: &nbsp;<input type="text" v-model="destination" required maxlength="50"><br>
-                Arrival Time: &nbsp;<input type="datetime-local" v-model= "arrival_time" required><br>
+                Destination: &nbsp;<input id="d" type="text" v-model="destination" required maxlength="50"><br>
+                Arrival Time: &nbsp;<input id="t" type="datetime-local" v-model= "arrival_time" required><br>
                 Passenger Number: &nbsp;<input type="number" v-model="passenger_num"required max="500" id="num"><br>
                 Do you want a shared ride? &nbsp;
-                <select v-model="is_exclusive" required>
+                <select v-model="is_exclusive" id="ex" required>
                     <option value="No">No</option>
                     <option value="Yes">Yes</option>
                 </select><br>
-                Do you have any requirement on vehicle type? &nbsp;<select type="text" v-model="car_type" required>
+                Do you have any requirement on vehicle type? &nbsp;<select id="ct" type="text" v-model="car_type" required>
                     <option selected value="Unspecified">Unspecified</option>
                     <option value="Sedan">Sedan</option>
                     <option value="SUV">SUV</option>
@@ -87,7 +87,7 @@
                     <option value="Truck">Truck</option>
                     <option value="Minivan">Minivan</option>
                 </select><br>
-                Special Info: &nbsp;<textarea v-model="special_info"></textarea><br>
+                Special Info: &nbsp;<textarea id="si" v-model="special_info"></textarea><br>
                 <button @click="submit">Request a Ride Now</button>
             </div>
           
@@ -106,6 +106,25 @@
                 is_exclusive: "No",
                 car_type:'Unspecified',
                 special_info: '',
+            },
+            mounted: function() {
+                that = this
+                axios.get("aux_get_order_info").then(function(response) {
+                        if (response.data.status_code == 1) {
+                            alert("Please log in first!")
+                        } else {
+                            console.log(response.data)
+                            that.destination = response.data[0].fields.destination
+                            that.arrival_time = response.data[0].fields.arrival_time
+                            that.passenger_num = response.data[0].fields.passenger_num
+                            that.is_exclusive = response.data[0].fields.is_exclusive
+                            that.car_type = response.data[0].fields.car_type
+                            that.special_info = response.data[0].fields.special_info
+                            
+                        }
+                    }).catch(function(err) {
+                        alert('Error');
+                    });
             },
             methods: {
                 submit: function() {
