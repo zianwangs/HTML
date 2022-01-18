@@ -111,7 +111,7 @@
                             alert("You are not a driver yet, please register first!")
                             location.href = "driver_register.html"
                         } else {
-                            console.log(response.data)
+                            console.log(response.data[0].fields.number_of_incomplete_orders)
                             that.real_name = response.data[0].fields.real_name
                             that.licence_number = response.data[0].fields.licence_number
                             that.car_capacity = response.data[0].fields.car_capacity
