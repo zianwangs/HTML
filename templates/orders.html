@@ -65,9 +65,9 @@
     <br>
     <h2>Confirmed:</h2>
     <ul v-for='item in confirmed_list'>
-        
-        <li>Order Serial Number: #{item.id}</li> 
-        <li>Arrival Time: {item.arrival_time}</li>
+        <li>Order No: #{item.id},</li> 
+        <li>Dest.: {item.destination},</li> 
+        <li>Arr. Time: {item.arrival_time},</li>
         <li>Status:<b style="color:blue"> {item.status}</b></li>
         <button id="edit_" @click="view(item.id, true)">View</button>
     </ul>
