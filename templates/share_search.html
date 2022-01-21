@@ -94,35 +94,21 @@
         <li>Destination: &nbsp;<input type="text" v-model="destination" required maxlength="50">&nbsp;&nbsp;&nbsp;&nbsp;
         Earliest Arrival: &nbsp;<input type="datetime-local" v-model="earliest_time" class="date_input"required></li>
         <li>Latest Arrival: &nbsp;<input type="datetime-local" v-model="latest_time" class="date_input" required>
-    <!-- </li> &nbsp;&nbsp;&nbsp;
-            Do you have any requirement on vehicle type? &nbsp;<select v-model="car_type" required>
-                <option selected value="Unspecified">Unspecified</option>
-                <option value="Sedan">Sedan</option>
-                <option value="SUV">SUV</option>
-                <option value="Sports Car">Sports Car</option>
-                <option value="Convertible">Convertible</option>
-                <option value="Truck">Truck</option>
-                <option value="Minivan">Minivan</option>
-            </select><br>
-            Special Info: &nbsp;<input id="special_info" v-model="special_info">  
-            </li> -->
-            <button @click="search">Find Shared Rides</button></li>
-        
-        
-    </div>
+        <button @click="search">Find Shared Rides</button></li>
+        </div>
   
-    <div id="result">
-        You found {orders.length} orders.<br>
-        <ul v-for='item in orders'>
-            <li>Order ID: {item.id}</li>
-            <li>Arrival Time: {item.arrival_time}</li>
-            <li>Passenger Number: {item.passenger_num}</li>
-            <li>Is exclusive: {item.is_exclusive}</li>
-            <li>Vehicle Type: {item.car_type}</li>
-            <li>Special info: {item.special_info}</li>
-            <button id="join_" @click="join(item.id)">Join</button>
-        </ul>
-    </div>
+        <div id="result">
+            You found {orders.length} orders.<br>
+            <ul v-for='item in orders'>
+                <li>Order ID: {item.id}</li>
+                <li>Arrival Time: {item.arrival_time}</li>
+                <li>Passenger Number: {item.passenger_num}</li>
+                <li>Is exclusive: {item.is_exclusive}</li>
+                <li>Vehicle Type: {item.car_type}</li>
+                <li>Special info: {item.special_info}</li>
+                <button id="join_" @click="join(item.id)">Join</button>
+            </ul>
+        </div>
     </div>
     <script>
         var app = new Vue({
