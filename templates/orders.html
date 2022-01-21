@@ -57,7 +57,7 @@
         <li>Dest.: {item.destination},</li> 
         <li>Arr. Time: {item.arrival_time},</li>
         <li>Status:<b style="color:green"> {item.status}</b></li>
-        <button id="edit_" @click="edit(item.id)">View</button>
+        <button id="edit_" @click="edit(item.id, false)">View</button>
     </ul>
     <br>
     <h2>Confirmed:</h2>
@@ -66,7 +66,7 @@
         <li>Order Serial Number: #{item.id}</li> 
         <li>Arrival Time: {item.arrival_time}</li>
         <li>Status:<b style="color:blue"> {item.status}</b></li>
-        <button id="edit_" @click="edit(item.id)">View</button>
+        <button id="edit_" @click="view(item.id, true)">View</button>
     </ul>
     
     </div>
@@ -103,13 +103,14 @@
                 });
             },
             methods: {
-                edit: function(oid) {
+                view: function(oid, is_confirmed) {
                     that = this;
-                    axios.get("edit/"+oid).then(function(response) {
+                    axios.get("view/"+oid).then(function(response) {
                         if (response.data.status_code == 1) {
                             alert("Please log in first!")
                         } else {
-                            location.href = "/edit_order.html"
+                            if (!is_confirmed) location.href = "/open_order_details.html"
+                            else location.href = "/confirmed_order_details"
                         }
                     }).catch(function(err) {
                         alert('Error');
