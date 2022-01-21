@@ -11,7 +11,7 @@
     <style>
         h1 {
             margin-top: 20px;
-            margin-left: 30px;
+            margin-left: 15px;
 
         }
         input {
@@ -77,9 +77,9 @@
             padding-top: 20px;
             font-size: 20px;
             list-style: none;
-            width: 650px;
+            width: 850px;
             border: 1px solid gray;
-            margin-left: 100px;
+            margin-left: 25px;
             border-radius: 10px;
             margin-top: 20px;
         }
@@ -111,10 +111,11 @@
             <ul v-for='item in orders'>
                 <li>Order ID: {item.id}</li>
                 <li>Destination: {item.destination}</li>
-                <li>Passenger Number: {item.passenger_num}</li><br>
+                <li>Passenger Number: {item.passenger_num}</li>
+                <li>Vehicle Type: {item.car_type}</li><br>
                 <li>Arrival Time: {item.arrival_time}</li>
                 
-                <li>Vehicle Type: {item.car_type}</li><br>
+                
                 <li>Special info: {item.special_info}</li><br>
                 <button id="join_" @click="join(item.id)">Join</button>
             </ul>
