@@ -33,7 +33,7 @@
         li {
             display: inline;
         }
-        #complete_ {
+        #view_ {
             float: right;
             margin-right: 25px;
             margin-top: -12px;
@@ -61,7 +61,7 @@
         <li>Dest.: {item.destination},</li> 
         <li>Arr. Time: {item.arrival_time},</li>
         <li>Status:<b style="color:blue"> {item.status}</b></li>
-        <button id="complete_" @click="complete(item.id)">View</button>
+        <button id="view_" @click="view(item.id)">View</button>
     </ul>
     <br>
     
@@ -97,31 +97,15 @@
                 });
             },
             methods: {
-                request: function() {
+                view: function(oid) {
                     that = this;
-                    axios.get().then(function(response) {
-                        if (response.data.status_code != 0) {
-                            alert("Please log in first!")
-                        } else {
-                            alert("Order has been published!")
-                        }
-                    }).catch(function(err) {
-                        alert('Error');
-                    });
-                },
-                complete: function(oid) {
-                    that = this;
-                    axios.get("complete/"+oid).then(function(response) {
+                    axios.get("view/"+oid).then(function(response) {
                         if (response.data.status_code == 1) {
-                            alert("Please log in first!");
-                            location.href = "login.html"
-                        } else if (response.data.status_code == 2){
+                            alert("Please log in first!")
+                        } else if (response.data.status_code == 2) {
                             alert("You are not a driver yet, please register first!")
-                            location.href = "driver_register.html"
                         } else {
-                            alert("Order completed!")
-                            location.href = "drive_orders.html"
-                            
+                            location.href = "/driver_order_details.html"
                         }
                     }).catch(function(err) {
                         alert('Error');
