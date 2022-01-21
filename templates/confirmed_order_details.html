@@ -86,7 +86,7 @@
                 <li>Total Passengers: {passenger_num}</li>
                 <li>Vehicle Type: {car_type}</li>
                 <li>Special Info: {special_info}</li>
-                <button @click="edit">Edit Request</button>
+                <button @click="edit">Back</button>
             </div>
           
             
@@ -136,16 +136,7 @@
             },
             methods: {
                 edit: function() {
-                    that = this;
-                    axios.get("edit/"+that.order_id).then(function(response) {
-                        if (response.data.status_code == 1) {
-                            alert("Please log in first!")
-                        } else {
-                            location.href = "/edit_order.html"
-                        }
-                    }).catch(function(err) {
-                        alert('Error');
-                    });
+                    location.href = "orders.html;"
                 }
             },
             
