@@ -50,7 +50,8 @@
             border-bottom: 1px solid gray;
         }
         li {
-            margin-left: 100px;
+            margin-top: 20px;
+            margin-left: 50px;
             display: inline;
             list-style: none;
         }
@@ -81,18 +82,14 @@
             border-radius: 10px;
             margin-top: 20px;
         }
-        li {
-            margin-top: 20px;
-
-        }
         #join_ {
             font-size: 20px;
             width: 200px;
             height: 50px;
             width: 80%;
             padding: auto;
-            margin-top: 5px;
-            margin-bottom: 5px;
+            margin-top: 10px;
+            margin-bottom: 10px;
         }
     </style>
 </head>
@@ -112,9 +109,10 @@
             You found {orders.length} orders.<br>
             <ul v-for='item in orders'>
                 <li>Order ID: {item.id}</li>
-                <li>Arrival Time: {item.arrival_time}</li><br>
-                <li>Passenger Number: {item.passenger_num}</li>
-                <li>Vehicle Type: {item.car_type}</li><br>
+                <li>Destination: {item.destination}</li><br>
+                <li>Arrival Time: {item.arrival_time}</li>
+                <li>Passenger Number: {item.passenger_num}</li><br>
+                <li>Vehicle Type: {item.car_type}</li>
                 <li>Special info: {item.special_info}</li><br>
                 <button id="join_" @click="join(item.id)">Join</button>
             </ul>
