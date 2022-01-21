@@ -17,7 +17,8 @@
             
         }
         #request {
-            margin-top: 30px;
+            margin-top: 50px;
+            line-height: 20px;
             margin-left: 240px;
             width: 60%;
             text-align: center;
@@ -78,7 +79,7 @@
                 <li>Arr. Time: {arrival_time},</li>
                 <li>Order Status: {status}</b></li>
                 <li>Is Exclusive: {is_exclusive}</li>
-                <li>Sharer Number: {sharer_number}</li>
+                <li>Sharer Number: {sharer_num}</li>
                 <li>Total Passengers: {passenger_num}</li>
                 <li>Vehicle Type: {car_type}</li>
                 <li>Special Info: {special_info}</li>
@@ -102,12 +103,12 @@
                 car_type:'Unspecified',
                 special_info: '',
                 order_id: '',
-                sharer_number: 0,
+                sharer_num: 0,
                 status: "",
             },
             mounted: function() {
                 that = this
-                axios.get("aux_get_order_info").then(function(response) {
+                axios.get("aux_get_order_info__view").then(function(response) {
                         if (response.data.status_code == 1) {
                             alert("Please log in first!")
                         } else {
@@ -120,7 +121,7 @@
                             that.is_exclusive = response.data[0].fields.is_exclusive ? "No" : "Yes"
                             that.car_type = response.data[0].fields.car_type
                             that.special_info = response.data[0].fields.special_info
-                            that.sharer_number = response.data[0].fields.sharer_number
+                            that.sharer_num = response.data[0].fields.sharer_number
                         }
                     }).catch(function(err) {
                         alert('Error');
