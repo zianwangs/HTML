@@ -46,7 +46,7 @@
         #info {
             width: 900px;
             margin-left: 100px;
-            padding-bottom: 10px;
+            padding-bottom: 15px;
             border-bottom: 1px solid gray;
         }
         li {
@@ -67,7 +67,7 @@
             cursor: pointer;
         }
         #result {
-            margin-top: 50px;
+            margin-top: 30px;
             height: 500px;
             background-color: white;
         }
@@ -94,7 +94,7 @@
         <div id="info"> 
         <li>Destination: &nbsp;<input type="text" v-model="destination" required maxlength="50">&nbsp;&nbsp;&nbsp;&nbsp;
         Earliest Arrival: &nbsp;<input type="datetime-local" v-model="earliest_time" class="date_input"required></li>
-        <br><br>
+        <br>   
         <li>Latest Arrival: &nbsp;<input type="datetime-local" v-model="latest_time" class="date_input" required>
         <button @click="search">Find Shared Rides</button></li>
         </div>
