@@ -50,17 +50,24 @@
             list-style: none;
             width: 800px;
             border: 1px solid gray;
-            margin-left: 0px;
+            margin-left: 10px;
             border-radius: 10px;
             margin-top: 20px;
+            padding-left: 20px;
         }
         li {
             display: inline;
+            margin-left: 10px;
         }
         #confirm_ {
             font-size: 20px;
             width: 200px;
             height: 50px;
+            width: 96%;
+            margin-left: 15px;
+            padding: auto;
+            margin-top: 10px;
+            margin-bottom: 10px;
         }
     </style>
 </head>
@@ -75,11 +82,11 @@
         You found {orders.length} orders.<br>
         <ul v-for='(item, i) in orders'>
             <li>Order ID: {item.order_id}</li>
-            <li>Arrival Time: {item.arrival_time}</li>
+            <li>Destination: {item.destination}</li>
+            <li>Arrival Time: {item.arrival_time}</li><br>
             <li>Passenger Number: {item.passenger_num}</li>
-            <li>Is exclusive: {item.is_exclusive}</li>
             <li>Vehicle Type: {item.car_type}</li>
-            <li>Special info: {item.special_info}</li>
+            <li>Special info: {item.special_info}</li><br>
             <button id="confirm_" @click="confirm(item.order_id)">Confirm</button>
         </ul>
     </div>
