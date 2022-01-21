@@ -104,11 +104,10 @@
             You found {orders.length} orders.<br>
             <ul v-for='item in orders'>
                 <li>Order ID: {item.id}</li>
-                <li>Arrival Time: {item.arrival_time}</li>
+                <li>Arrival Time: {item.arrival_time}</li><br>
                 <li>Passenger Number: {item.passenger_num}</li>
-                <li>Is exclusive: {item.is_exclusive}</li>
-                <li>Vehicle Type: {item.car_type}</li>
-                <li>Special info: {item.special_info}</li>
+                <li>Vehicle Type: {item.car_type}</li><br>
+                <li>Special info: {item.special_info}</li><br>
                 <button id="join_" @click="join(item.id)">Join</button>
             </ul>
         </div>
