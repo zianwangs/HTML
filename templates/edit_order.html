@@ -127,7 +127,7 @@
                                 document.getElementById("d").disabled = true
                                 document.getElementById("ex").disabled = true
                             }
-                            if (!response.data[0].fields.role == "1") {
+                            if (response.data[0].fields.role == "1") {
                                 document.getElementById("ct").disabled = true;
                                 document.getElementById("si").disabled = true;
                             }
