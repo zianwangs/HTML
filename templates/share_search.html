@@ -74,6 +74,7 @@
             background-color: white;
         }
         ul {
+            padding-top: 20px;
             font-size: 20px;
             list-style: none;
             width: 650px;
@@ -86,7 +87,7 @@
             font-size: 20px;
             width: 200px;
             height: 50px;
-            width: 80%;
+            width: 85%;
             padding: auto;
             margin-top: 10px;
             margin-bottom: 10px;
@@ -109,10 +110,11 @@
             You found {orders.length} orders.<br>
             <ul v-for='item in orders'>
                 <li>Order ID: {item.id}</li>
-                <li>Destination: {item.destination}</li><br>
-                <li>Arrival Time: {item.arrival_time}</li>
+                <li>Destination: {item.destination}</li>
                 <li>Passenger Number: {item.passenger_num}</li><br>
-                <li>Vehicle Type: {item.car_type}</li>
+                <li>Arrival Time: {item.arrival_time}</li>
+                
+                <li>Vehicle Type: {item.car_type}</li><br>
                 <li>Special info: {item.special_info}</li><br>
                 <button id="join_" @click="join(item.id)">Join</button>
             </ul>
