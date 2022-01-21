@@ -53,10 +53,10 @@
     <div id="orders_body">
     <h2>Open:</h2>
     <ul v-for='item in open_list'>
-        <li>Order Num: #{item.id},</li> 
-        <li>Destination: {item.destination},</li> 
+        <li>Order No: #{item.id},</li> 
+        <li>Dest.: {item.destination},</li> 
         <li>Arrival Time: {item.arrival_time},</li>
-        <li>Status:<b style="color:green"> {item.status}.</b></li>
+        <li>Status:<b style="color:green"> {item.status}</b></li>
         <button id="edit_" @click="edit(item.id)">View</button>
     </ul>
     <br>
