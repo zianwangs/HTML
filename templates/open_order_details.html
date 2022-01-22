@@ -154,7 +154,7 @@
                             alert("Order has been confirmed already, you can't cancel it now!")
                             location.href = "/orders.html"
                         } else if (response.data.status_code == 4) {
-                            alert("Order has been cancelled already, please do not cancel twice!")
+                            alert("Order has been cancelled by the owner, we're sorry!")
                             location.href = "/orders.html"
                         } else {
                             alert("Cancelled successfully!")
