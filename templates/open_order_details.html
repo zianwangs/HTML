@@ -86,7 +86,7 @@
                 <li>Total Passengers: {passenger_num}</li>
                 <li>Vehicle Type: {car_type}</li>
                 <li>Special Info: {special_info}</li>
-                <button @click="edit">Cancel Order</button>
+                <button @click="cancel">Cancel Order</button>
                 <button @click="edit">Edit Request</button>
             </div>
           
@@ -139,6 +139,26 @@
                             alert("Please log in first!")
                         } else {
                             location.href = "/edit_order.html"
+                        }
+                    }).catch(function(err) {
+                        alert('Error');
+                    });
+                },
+                cancel: function() {
+                    that = this;
+                    axios.get("cancel/"+that.order_id).then(function(response) {
+                        if (response.data.status_code == 1) {
+                            alert("Please log in first!")
+                            location.href = "/login.html"
+                        } else if (response.data.status_code == 3) {
+                            alert("Order has been confirmed already, you can't cancel it now!")
+                            location.href = "/orders.html"
+                        } else if (response.data.status_code == 4) {
+                            alert("Order has been cancelled already, please do not cancel twice!")
+                            location.href = "/orders.html"
+                        } else {
+                            alert("Cancelled successfully!")
+                            location.href = "/orders.html"
                         }
                     }).catch(function(err) {
                         alert('Error');
